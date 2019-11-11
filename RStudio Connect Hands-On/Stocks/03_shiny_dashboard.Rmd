@@ -1,0 +1,87 @@
+---
+title: "Stock Analysis"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(tidyquant)
+library(timetk)
+library(highcharter)
+library(DT)
+```
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+```{r}
+textInput('ticker', 'Enter Stock Ticker Symbol', 'GOOG')
+selectInput(
+  'func', 
+  'Select Metric of Interest',
+  choices = list('Volatility' = 'var', 'Average' = 'mean')
+)
+price <- reactive({tq_get(input$ticker, from = "2018-01-01") %>% 
+  mutate(change = close - open)})
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Stock Price Over Time (Chart)
+
+```{r}
+renderHighchart({
+  xts_price <- tk_xts(price())
+  colnames(xts_price) <- paste0(input$ticker,'.', colnames(xts_price))
+
+  highchart(type = "stock") %>% 
+    hc_add_series(xts_price, type = "candlestick")
+})
+```
+
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Stock Metric
+
+```{r}
+renderValueBox({
+  volatility <- price() %>% 
+    select(date, adjusted) %>% 
+    mutate(returns = (log(adjusted) - log(lag(adjusted)))) %>%
+    na.omit() %>% 
+    summarize(volatility = eval(parse(text = paste0(input$func, "(returns)")))) %>% 
+    pull(volatility)
+  
+  valueBox(
+    sprintf('%g%%', round(volatility*100,2)),
+    input$func,
+    icon = 'ion-cash'
+  )
+})
+
+```
+
+### Stock Price Table
+
+```{r}
+DT::renderDataTable({
+  DT::datatable(price(), rownames = FALSE, options = list(order = list(list(0, 'desc')))) %>% 
+    formatCurrency(c('open', 'high', 'low', 'close', 'adjusted', 'change')) %>% 
+    formatDate(c('date')) %>%
+    formatStyle('volume', 
+      background = styleColorBar(price()$volume, 'steelblue')
+    ) %>% 
+    formatStyle(
+      'change', 
+      color = styleInterval(c(0), c('maroon', 'darkgreen'))
+    )  
+})
+
+```

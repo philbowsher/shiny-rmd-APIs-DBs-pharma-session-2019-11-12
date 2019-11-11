@@ -1,0 +1,26 @@
+Run vpc.plot.r for model(s) run1, run2, run3, run4, run5 in /Users/richard/Documents/Rpackages/shinyMixR/Case0.PageDemo
+Compiling VPC model...done (0.66 sec)
+done (0.07 sec)
+Compiling VPC model...done (0.30 sec)
+done (0.26 sec)
+Compiling VPC model...done (0.50 sec)
+done (0.04 sec)
+Compiling VPC model...done (0.47 sec)
+done (0.05 sec)
+Compiling VPC model...done (0.46 sec)
+done (0.04 sec)
+[[1]]
+NULL
+
+[[2]]
+NULL
+
+[[3]]
+NULL
+
+[[4]]
+NULL
+
+[[5]]
+NULL
+

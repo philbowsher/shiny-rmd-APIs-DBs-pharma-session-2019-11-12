@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="Preface: The Road So Far | nlmixr: an R package for population PKPD modeling" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
+
+
+<meta name="author" content="Matthew Fidler, Teun M. Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam N. Trame, Justin Wilkins, Yuan Xiong and Wenping Wang" />
+
+<meta name="date" content="2019-06-07" />
+
+
+<meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
+
+<title>Preface: The Road So Far | nlmixr: an R package for population PKPD modeling</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+\usepackage{booktabs}
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#welcome-to-population-modeling-in-r">Welcome to population modeling in R</a></li>
+<li class="has-sub"><a href="preface-the-road-so-far.html#preface-the-road-so-far">Preface: The Road So Far</a><ul>
+<li><a href="about-this-book.html#about-this-book">About this book</a></li>
+<li><a href="acknowledgements.html#acknowledgements">Acknowledgements</a></li>
+</ul></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Introduction</a><ul>
+<li><a href="1-1-prereq.html#prereq"><span class="toc-section-number">1.1</span> Prerequisites</a></li>
+<li><a href="1-2-workflow.html#workflow"><span class="toc-section-number">1.2</span> Workflow</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-install.html#install"><span class="toc-section-number">2</span> Installation</a><ul>
+<li class="has-sub"><a href="2-1-nlmixr.html#nlmixr"><span class="toc-section-number">2.1</span> <code>nlmixr</code></a><ul>
+<li><a href="2-1-nlmixr.html#installation-via-docker"><span class="toc-section-number">2.1.1</span> Installation via Docker</a></li>
+</ul></li>
+<li><a href="2-2-shinymixr-project-management-tool.html#shinymixr-project-management-tool"><span class="toc-section-number">2.2</span> <code>shinyMixR</code>: project management tool</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-vignettes.html#vignettes"><span class="toc-section-number">3</span> <code>nlmixr</code> vignettes</a><ul>
+<li class="has-sub"><a href="3-1-nlmixr-1.html#nlmixr-1"><span class="toc-section-number">3.1</span> <code>nlmixr</code></a><ul>
+<li><a href="3-1-nlmixr-1.html#rationale"><span class="toc-section-number">3.1.1</span> Rationale</a></li>
+<li><a href="3-1-nlmixr-1.html#some-examples"><span class="toc-section-number">3.1.2</span> Some examples</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-2-xpose.html#xpose"><span class="toc-section-number">3.2</span> <code>xpose.nlmixr</code></a><ul>
+<li><a href="3-2-xpose.html#introduction"><span class="toc-section-number">3.2.1</span> Introduction</a></li>
+<li><a href="3-2-xpose.html#getting-started"><span class="toc-section-number">3.2.2</span> Getting started</a></li>
+<li><a href="3-2-xpose.html#overview"><span class="toc-section-number">3.2.3</span> Overview</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-3-interface.html#interface"><span class="toc-section-number">3.3</span> <code>shinyMixR</code></a><ul>
+<li><a href="3-3-interface.html#introduction-1"><span class="toc-section-number">3.3.1</span> Introduction</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-applications.html#applications"><span class="toc-section-number">4</span> Applications of <code>nlmixr</code></a><ul>
+<li><a href="4-1-posters-presentations-and-publications.html#posters-presentations-and-publications"><span class="toc-section-number">4.1</span> Posters, Presentations and Publications</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="preface-the-road-so-far" class="section level1 unnumbered">
+<h1>Preface: The Road So Far</h1>
+<p>In pharmacometrics there are several population pharmacokinetic and pharmacodynamic modeling software packages. The <code>nlmixr</code> R package was developed for fitting general dynamic models, pharmacokinetic (PK) models and pharmacokinetic-pharmacodynamic (PKPD) models in particular, with either individual data or population data. The interesting part about <code>nlmixr</code> is that it is open-source and the entire workflow of modeling can be done solely in R!</p>
+<p><code>nlmixr</code> has its roots in <code>RxODE</code>. Once <code>RxODE</code> was built it was soon recognized that by combining <code>RxODE</code> with a nonlinear mixed-effect model (NLME) estimation tool, one greatly expands an existing NLME tool to include fitting a population PK/PD model described by a set of ordinary differential equations (ODEs) and by allowing complex and arbitrary dosing history.</p>
+<p>The first attempt was to combine <code>RxODE</code> with the <code>nlme()</code> function in R, resulting in two efficient and useful functions for population PK/PD: <code>nlme_lin_cmpt()</code> and <code>nlme_ode()</code>. After the initial success of these functions, stochastic approximation expectation maximization (SAEM) was subsequently added to the <code>nlmixr</code> toolbox. While maintaining fidelity to the original SAEM algorithm, the <code>nlmixr</code> implementation of SAEM was written from scratch using <code>C++</code> with many optimizations and re-factorizations in comparison to the original implementation. The resulting SAEM code is compact and efficient. Since execution of <code>nlmixr</code>’s SAEM is in compiled <code>C++</code> mode, the speed of the implementation is relatively fast.</p>
+<p>A function for the generalized nonlinear mixed-effect model (<code>gnlmm</code>) was developed to address project needs. This function <code>gnlmm()</code> takes an arbitrary user-defined log-likelihood function and hence is able to fit odd types of data like binary data, count data, heavy tail data and bounded clinical endpoints via beta-regression. Structure models can be optionally defined by user-defined ODEs.</p>
+<p>These population PK/PD functions, plus a number of ancillary functions to aid model building (including support for VPCs, bootstraps and stepwise forward selection of covariates), comprised the functionality of the first public release of <code>nlmixr</code> in October 2016.</p>
+<p>In early 2017, a publication on the use of sensitivity equations in first-order conditional estimation with interaction (FOCEi) by <a href="https://link.springer.com/article/10.1007/s10928-015-9409-1">Almquist and colleagues</a> was brought to the attention of the <code>nlmixr</code> team, and a proof-of-concept implementation was soon put in place. A full production version will soon be completed.</p>
+<p><code>nlmixr</code>’s population PK/PD functions are highly optimized and efficient. However, due to historic reasons (e.g., <code>nlme</code>’s original user interface) and specific input-output needs, different algorithms in <code>nlmixr</code> had similar but subtly different user interfaces. To reduce the learning curve of population PK/PD modeling, the <code>nlmixr</code> team proposed and implemented a unified user-interface (UUI) across all fitting algorithms in mid-2017. The result is a minimalist, intuitive, expressive, domain-specific population PK/PD modeling language. A comprehensive collection of nlme algorithms with the UUI marked the first CRAN release of <code>nlmixr</code> in October 2017.</p>
+<p><code>nlmixr</code> remains under active, intensive development, and exciting features and functionality emerge almost on a daily basis. For instance, parallel computing has recently become available in <code>RxODE</code> via the <code>openmp</code> package. This parallel computing capability is the industry’s first among the current population PK/PD simulators to the best of our knowledge. Clinical trial simulation (CTS) was added to <code>nlmixr</code> in May 2018 and is capable of extensive and sophisticated CTS right after a population PK/PD model with <code>nlmixr</code>.</p>
+<p>We hope you enjoy <code>nlmixr</code>!</p>
+<p><em><strong>Wenping Wang</strong></em></p> 
+</div>
+<p style="text-align: center;">
+<a href="index.html"><button class="btn btn-default">Previous</button></a>
+<a href="about-this-book.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

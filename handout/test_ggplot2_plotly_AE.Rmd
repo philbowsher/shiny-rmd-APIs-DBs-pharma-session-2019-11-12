@@ -1,0 +1,53 @@
+---
+title: "flexdashboard + shiny"
+output: 
+ flexdashboard::flex_dashboard:
+   orientation: columns
+   source_code: embed
+runtime: shiny
+---
+
+```{r global, include=FALSE}
+# By Sean Lopp
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+library(shiny)
+library(ggplot2)
+library(dplyr)
+library(haven)
+
+adae <- read_xpt("adae.xpt") %>% mutate(
+    SEX = factor(SEX),
+    AESEV =  factor(AESEV),
+    RACE = factor(RACE)
+)
+
+```
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+checkboxGroupInput("AESEV", "Severity", choices = c("MILD", "MODERATE", "SEVERE"),
+                   selected = c("MILD", "MODERATE", "SEVERE"), inline = TRUE
+                   )
+
+```
+
+Outputs
+-----------------------------------------------------------------------
+
+### Scatterplot of caret and color
+
+```{r}
+adae_subset <- reactive({
+  adae %>%
+    filter(
+      AESEV %in% input$AESEV
+    )
+})
+renderPlot({
+  ggplot(adae_subset(), aes(x = AGE, y = RACE, color = AESEV)) +
+    geom_point()
+})
+```
+

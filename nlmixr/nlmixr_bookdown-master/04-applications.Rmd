@@ -1,0 +1,28 @@
+# Applications of `nlmixr` {#applications}
+
+
+<!-- ## Posters and Presentations -->
+## Posters, Presentations and Publications
+
+```{r echo=FALSE, results='hide'}
+file.copy("posters", "docs/posters", overwrite = TRUE)
+```
+
+- ACoP 2016, Seattle, USA: <a href="posters/PosterACoP2016.pdf" target="_blank">PosterACoP2016</a>
+- WCoP 2016, Brisbane, Australia: <a href="posters/PosterWCoP2016.pdf" target="_blank">PosterWCoP2016</a>
+- On 8 December 2016, Rik Schoemaker presented a seminar on `nlmixr` at Uppsala University with the title: **`nlmixr`: an open-source package for pharmacometric modelling in R** (<a href="posters/PRESnlmixrUppsala161208.pdf" target="_blank">PresentationUppsala161208</a>).
+- PAGE 2017, Budapest, Hungary: <a href="posters/PosterPAGE2017.pdf" target="_blank">PosterPAGE2017</a>
+- ACoP 2017, Fort Lauderdale, USA: <a href="posters/PosterACoP2017.pdf" target="_blank">PosterACoP2017</a>
+- `nlmixr` was presented at the 12^th^ Pharmacometrics Network Benelux Meeting (29 March 2018) with the title: **Simulation (RxODE) and parameter estimation in `nlmixr`** (<a href="posters/PRES nlmixr PNB 180326.pdf" target="_blank">PresentationPNB180326</a>).
+- PAGE 2018 Course, Montreux, Switzerland. [PAGE 2018](https://github.com/nlmixrdevelopment/PAGE-2018).
+- PAGE 2018 Poster, Montreux, Switzerland. [ShinyMixR: A project-centric R/Shiny run management tool for nlmixr](https://www.page-meeting.org/default.asp?abstract=8452)
+- ACoP9 Course, San Diego, USA [Tutorial 1:  nlmixr: Population Modeling in R](https://github.com/nlmixrdevelopment/ACoP9-2018)
+- CPT:PSP 2019 nlmixr tutorial (accepted)
+- PAGANZ/ASCEPT 2019 Course, Auckland, New Zealand [Population Approach workshop (pharmacometrics)](https://www.asceptasm.com/2019-annual-scientific-meeting/program-workshops/)
+- PAGE 2019 Course, Stockholm, Sweden
+- PAGE 2019 Poster, Stockholm, Sweden [Performance of the SAEM and FOCEI algorithms in the open-source non-linear mixed effect modelling tool nlmixr](https://www.page-meeting.org/default.asp?abstract=8978)
+- ACoP10, [nlmixr: Population modeling in R](https://www.go-acop.org/index.php?option=com_content&view=article&id=149:acop10-program&catid=20:site-content&Itemid=108)
+
+A series of posters were presented at different conferences where `nlmixr` was compared to `NONMEM`. These findings provide evidence that nlmixr provides a viable open-source parameter estimation alternative for fitting nonlinear mixed effects pharmacometric models within the R environment. A publication comparing `nlmixr` to `NONMEM/FOCEI` and `Monolix/SAEM` was submitted.
+
+Various other publications can be found [here](https://github.com/nlmixrdevelopment/Publications).

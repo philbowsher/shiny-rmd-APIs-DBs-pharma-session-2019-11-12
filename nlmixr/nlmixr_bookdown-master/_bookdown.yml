@@ -1,0 +1,7 @@
+book_filename: "nlmixr User\'s guide and Reference Manual"
+output_dir: "docs"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+  

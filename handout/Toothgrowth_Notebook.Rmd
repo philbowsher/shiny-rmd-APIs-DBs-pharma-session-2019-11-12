@@ -1,0 +1,81 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+A ggplot2 template - Make any plot by filling in the parameters of this template
+
+ggplot(data = <DATA>) +
+<GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+
+ggplot(data = <DATA>) +
+<GEOM_FUNCTION>(mapping = aes(<MAPPINGS>),
+stat = <STAT>) +
+<FACET_FUNCTION>
+
+ggplot(data = mpg) +
+geom_point(mapping = aes(x = displ, y = hwy))
+
+ggplot(data = diamonds) +
+geom_bar(mapping = aes(x = cut), stat = "count")
+
+```{r setup, include=FALSE}
+library(datasets)
+library(ggplot2)
+```
+
+### Chart A
+
+```{r}
+ggplot(data = ToothGrowth) +
+geom_point(mapping = aes(x = dose, y = len ))
+```
+
+
+```{r}
+ggplot(data = ToothGrowth) + 
+        geom_boxplot(aes(x = supp, y = len))
+
+```
+
+```{r}
+ggplot(aes(x = supp, y = len), data = ToothGrowth) + 
+        geom_boxplot(aes(fill = supp))
+```
+
+
+### Chart B
+
+```{r}
+#summary(ToothGrowth)
+
+ggplot(ToothGrowth, aes(x=factor(dose),y=len,fill=factor(dose))) +
+        geom_boxplot(notch=F) + facet_grid(.~supp) + 
+     scale_x_discrete("Dose") + 
+     scale_y_continuous("Length of Growth") + 
+        scale_fill_brewer(name="Dose", palette = "Set2") +
+     ggtitle("Analysis of Tooth Growth - Dose vs Supp")
+```
+
+
+### Chart C
+
+```{r}
+ggplot(ToothGrowth, aes(x = supp, y = len)) +
+        geom_boxplot(aes(fill = supp)) + facet_wrap(~dose) + theme_bw()
+
+```
+
+### Char D
+
+```{r}
+growth <- ToothGrowth$len
+hist(growth, prob = TRUE, col = "navajowhite3", border = "black", xlab = "")
+abline(v = mean(growth), col = "green", lwd = 2)
+lines(density(growth), col="blue", lwd=2)
+
+#qqnorm(growth);qqline(growth)
+#original_par <-par()
+#par(original_par)
+
+```

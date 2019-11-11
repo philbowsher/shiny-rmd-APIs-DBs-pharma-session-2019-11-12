@@ -1,0 +1,67 @@
+<!-- Preface -->
+
+# Preface: The Road So Far {-}
+In pharmacometrics there are several population pharmacokinetic and pharmacodynamic modeling software packages. The `nlmixr` R package was developed for fitting general dynamic models, pharmacokinetic (PK) models and pharmacokinetic-pharmacodynamic (PKPD) models in particular, with either individual data or population data. The interesting part about `nlmixr` is that it is open-source and the entire workflow of modeling can be done solely in R!
+
+`nlmixr` has its roots in `RxODE`.  Once `RxODE` was built it was soon recognized that by combining `RxODE` with a nonlinear mixed-effect model (NLME) estimation tool, one greatly expands an existing NLME tool to include fitting a population PK/PD model described by a set of ordinary differential equations (ODEs) and by allowing complex and arbitrary dosing history.  
+
+The first attempt was to combine `RxODE` with the `nlme()` function in R, resulting in two efficient and useful functions for population PK/PD: `nlme_lin_cmpt()` and `nlme_ode()`.  After the initial success of these functions, stochastic approximation expectation maximization (SAEM) was subsequently added to the `nlmixr` toolbox.  While maintaining fidelity to the original SAEM algorithm, the `nlmixr` implementation of SAEM was written from scratch using `C++` with many optimizations and re-factorizations in comparison to the original implementation. The resulting SAEM code is compact and efficient. Since execution of `nlmixr`’s SAEM is in compiled `C++` mode, the speed of the implementation is relatively fast.
+
+A function for the generalized nonlinear mixed-effect model (`gnlmm`) was developed to address project needs. This function `gnlmm()` takes an arbitrary user-defined log-likelihood function and hence is able to fit odd types of data like binary data, count data, heavy tail data and bounded clinical endpoints via beta-regression. Structure models can be optionally defined by user-defined ODEs.
+
+These population PK/PD functions, plus a number of ancillary functions to aid model building (including support for VPCs, bootstraps and stepwise forward selection of covariates), comprised the functionality of the first public release of `nlmixr` in October 2016.
+
+In early 2017, a publication on the use of sensitivity equations in first-order conditional estimation with interaction (FOCEi) by [Almquist and colleagues](https://link.springer.com/article/10.1007/s10928-015-9409-1) was brought to the attention of the `nlmixr` team, and a proof-of-concept implementation was soon put in place. A full production version will soon be completed.
+
+`nlmixr`’s population PK/PD functions are highly optimized and efficient. However, due to historic reasons (e.g., `nlme`’s original user interface) and specific input-output needs, different algorithms in `nlmixr` had similar but subtly different user interfaces. To reduce the learning curve of population PK/PD modeling, the `nlmixr` team proposed and implemented a unified user-interface (UUI) across all fitting algorithms in mid-2017. The result is a minimalist, intuitive, expressive, domain-specific population PK/PD modeling language. A comprehensive collection of nlme algorithms with the UUI marked the first CRAN release of `nlmixr` in October 2017.
+
+`nlmixr` remains under active, intensive development, and exciting features and functionality emerge almost on a daily basis. For instance, parallel computing has recently become available in `RxODE` via the `openmp` package. This parallel computing capability is the industry's first among the current population PK/PD simulators to the best of our knowledge. Clinical trial simulation (CTS) was added to `nlmixr` in May 2018 and is capable of extensive and sophisticated CTS right after a population PK/PD model with `nlmixr`.
+
+We hope you enjoy `nlmixr`!
+
+_**Wenping Wang**_
+
+## About this book {-}
+This book provides basic guidance on the use of `nlmixr` and serves as a basic reference manual, although we do not cover every aspect of modeling or `nlmixr`. Whenever possible, this manual refers to the individual pkgdown sites and/or github sites of the separate packages.
+
+We assume readers have a background in pharmacometric modeling and know how to use R. Basic knowledge is required and assumed on installing other software packages, such as Python. The installation of `nlmixr` and related software and packages is described in Chapter \@ref(install).
+
+## Acknowledgements {-}
+We are thankful for the time people have been willing to spend on this project. There have been various interactions and contributions on GitHub, which we really appreciate. We would like to  thank James Cavenaugh, [NeutralKaon](https://github.com/NeutralKaon), [ronkeizer](https://github.com/ronkeizer), [nholford](https://github.com/nholford), [kylebaron](https://github.com/kylebaron), [DimitrisVoul](https://github.com/DimitrisVoul), [ericwongyc](https://github.com/ericwongyc), [tamas-ferenci](https://github.com/tamas-ferenci), [karthikl6](https://github.com/karthikl6), [billdenny](https://github.com/bildenny), [amaisahmad](https://github.com/amaisahmad), [bgoodri](https://github.com/bgoodri), [cfosser](https://github.com/cfosser), [rfaelens](https://github.com/rfaelens), [dryoutao](https://github.com/dryoutao), [jfstanding](https://github.com/jfstanding), [SCarter79](https://github.com/SCarter79), [MikeKSmith](https://github.com/MikeKSmith), and many more.
+
+
+
+<!-- First chapter -->
+# Introduction {#intro}
+## Prerequisites {#prereq}
+Several packages and pieces of software together create the `nlmixr` environment.
+
+In general, these packages and software are:
+
+- [`R`](https://cran.r-project.org/) (including variants such as [Microsoft R Open](https://mran.microsoft.com/open) and related GUIs, such as RGui and [`Rstudio`](https://www.rstudio.com/))
+- [`Python`](https://www.python.org/) and [`SymPy`](http://www.sympy.org/index.html)
+- [`RxODE`](https://cran.r-project.org/package=RxODE) (development release on [GitHub](https://github.com/nlmixrdevelopment/RxODE))
+- [`nlmixr`](https://cran.r-project.org/package=nlmixr) (development release on [GitHub](https://github.com/nlmixrdevelopment/nlmixr))
+
+Secondary R packages required by `nlmixr` are:
+
+- [`n1qn1`](https://github.com/nlmixrdevelopment/n1qn1)
+- [`PreciseSums`](https://github.com/nlmixrdevelopment/PreciseSums)
+- [`SnakeCharmR`](https://github.com/nlmixrdevelopment/SnakeCharmR)
+
+Packages to support the use of `nlmixr` are:
+
+- [`shinyMixR`](https://richardhooijmaijers.github.io/shinyMixR/index.html)
+- [`xpose.nlmixr`](https://github.com/nlmixrdevelopment/xpose.nlmixr)
+
+ <!-- placeholder for an illustration -->
+
+More specific information on the installation of packages and software can be found in Chapter \@ref(install).
+
+
+## Workflow {#workflow}
+The ability to perform population modeling in R provides an opportunity to work via a single unified workflow for data management, data exploration, data analysis and report writing.
+
+`nlmixr` can be used directly from the R command line or via the user-friendly R Shiny tool `shinyMixR`. The `shinyMixR` package provides a means to build a project-centric workflow around `nlmixr` from the R command line and from a streamlined [`Shiny`](https://shiny.rstudio.com/) application. This project tool was developed to enhance the usability and attractiveness of nlmixr, facilitating dynamic and interactive use in real-time for rapid model development. More on the use of `shinyMixR` in Chapter \@ref(interface). 
+
+

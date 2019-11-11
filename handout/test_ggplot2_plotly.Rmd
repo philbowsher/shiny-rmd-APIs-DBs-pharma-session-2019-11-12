@@ -1,0 +1,47 @@
+---
+title: "flexdashboard + shiny"
+output: 
+ flexdashboard::flex_dashboard:
+   orientation: columns
+   source_code: embed
+runtime: shiny
+---
+
+```{r global, include=FALSE}
+# By Sean Lopp
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+library(shiny)
+library(ggplot2)
+library(dplyr)
+
+
+```
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+checkboxGroupInput("cut", "Cut", choices = c("Fair", "Good", "Very Good", "Premium", "Ideal"),
+                   selected = c("Fair", "Good", "Very Good", "Premium", "Ideal"), inline = TRUE
+                   )
+
+```
+
+Outputs
+-----------------------------------------------------------------------
+
+### Scatterplot of caret and color
+
+```{r}
+diamonds_subset <- reactive({
+  diamonds %>%
+    filter(
+      cut %in% input$cut
+    )
+})
+renderPlot({
+  ggplot(diamonds_subset(), aes(x = carat, y = color, color = cut)) +
+    geom_point()
+})
+```
+

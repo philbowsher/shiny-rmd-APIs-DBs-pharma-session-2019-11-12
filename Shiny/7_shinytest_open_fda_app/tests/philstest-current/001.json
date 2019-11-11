@@ -1,0 +1,49 @@
+{
+  "input": {
+    "api": "asdsdsd",
+    "end_date": "2018-09-05",
+    "seriousness": "0",
+    "start_date": "2004-01-01"
+  },
+  "output": {
+    "download_button": {
+      "html": "",
+      "deps": [
+
+      ]
+    },
+    "message": "Your request did not return any result.<br>Please try again!",
+    "plt": {
+      "src": "[image data sha1: 10598c5d4f84025645249d6844681848e088bd0a]",
+      "width": 714,
+      "height": 640,
+      "coordmap": [
+        {
+          "domain": {
+            "left": -0.04,
+            "right": 1.04,
+            "bottom": -0.04,
+            "top": 1.04
+          },
+          "range": {
+            "left": 0,
+            "right": 714,
+            "bottom": 639,
+            "top": -1
+          },
+          "log": {
+            "x": null,
+            "y": null
+          },
+          "mapping": {
+
+          }
+        }
+      ]
+    },
+    "tble": ""
+  },
+  "export": {
+
+  }
+}

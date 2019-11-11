@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="3.1 nlmixr | nlmixr: an R package for population PKPD modeling" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
+
+
+<meta name="author" content="Matthew Fidler, Teun M. Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam N. Trame, Justin Wilkins, Yuan Xiong and Wenping Wang" />
+
+<meta name="date" content="2019-06-07" />
+
+
+<meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
+
+<title>3.1 nlmixr | nlmixr: an R package for population PKPD modeling</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+\usepackage{booktabs}
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#welcome-to-population-modeling-in-r">Welcome to population modeling in R</a></li>
+<li class="has-sub"><a href="preface-the-road-so-far.html#preface-the-road-so-far">Preface: The Road So Far</a><ul>
+<li><a href="about-this-book.html#about-this-book">About this book</a></li>
+<li><a href="acknowledgements.html#acknowledgements">Acknowledgements</a></li>
+</ul></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Introduction</a><ul>
+<li><a href="1-1-prereq.html#prereq"><span class="toc-section-number">1.1</span> Prerequisites</a></li>
+<li><a href="1-2-workflow.html#workflow"><span class="toc-section-number">1.2</span> Workflow</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-install.html#install"><span class="toc-section-number">2</span> Installation</a><ul>
+<li class="has-sub"><a href="2-1-nlmixr.html#nlmixr"><span class="toc-section-number">2.1</span> <code>nlmixr</code></a><ul>
+<li><a href="2-1-nlmixr.html#installation-via-docker"><span class="toc-section-number">2.1.1</span> Installation via Docker</a></li>
+</ul></li>
+<li><a href="2-2-shinymixr-project-management-tool.html#shinymixr-project-management-tool"><span class="toc-section-number">2.2</span> <code>shinyMixR</code>: project management tool</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-vignettes.html#vignettes"><span class="toc-section-number">3</span> <code>nlmixr</code> vignettes</a><ul>
+<li class="has-sub"><a href="3-1-nlmixr-1.html#nlmixr-1"><span class="toc-section-number">3.1</span> <code>nlmixr</code></a><ul>
+<li><a href="3-1-nlmixr-1.html#rationale"><span class="toc-section-number">3.1.1</span> Rationale</a></li>
+<li><a href="3-1-nlmixr-1.html#some-examples"><span class="toc-section-number">3.1.2</span> Some examples</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-2-xpose.html#xpose"><span class="toc-section-number">3.2</span> <code>xpose.nlmixr</code></a><ul>
+<li><a href="3-2-xpose.html#introduction"><span class="toc-section-number">3.2.1</span> Introduction</a></li>
+<li><a href="3-2-xpose.html#getting-started"><span class="toc-section-number">3.2.2</span> Getting started</a></li>
+<li><a href="3-2-xpose.html#overview"><span class="toc-section-number">3.2.3</span> Overview</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-3-interface.html#interface"><span class="toc-section-number">3.3</span> <code>shinyMixR</code></a><ul>
+<li><a href="3-3-interface.html#introduction-1"><span class="toc-section-number">3.3.1</span> Introduction</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-applications.html#applications"><span class="toc-section-number">4</span> Applications of <code>nlmixr</code></a><ul>
+<li><a href="4-1-posters-presentations-and-publications.html#posters-presentations-and-publications"><span class="toc-section-number">4.1</span> Posters, Presentations and Publications</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="nlmixr-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> <code>nlmixr</code></h2>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nlmixr)
+?nlmixr</code></pre>
+<div id="rationale" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Rationale</h3>
+<p><code>nlmixr</code> estimation routines have their own way of specifying
+models. Often the models are specified in ways that are most
+intuitive for one estimation routine, but do not make sense for
+another estimation routine. Sometimes, legacy estimation
+routines like [nlme] have their own syntax that
+is outside of the control of the <code>nlmixr</code> package.</p>
+<p>The unique syntax of each routine makes the routines themselves
+easier to maintain and expand, and allows interfacing with
+existing packages that are outside of <code>nlmixr</code> (like
+[nlme]). However, a model definition language
+that is common between estimation methods, and an output object
+that is uniform, will make it easier to switch between estimation
+routines and will facilitate interfacing output with external
+packages like <code>xpose</code> and other user-written packages.</p>
+<p>The <code>nlmixr</code> mini-modeling language (Domain Specific Language) attempts to address this issue
+by incorporating a common language. This language is inspired by
+both <code>R</code> and <code>NONMEM</code>, since these languages are familiar to many
+pharmacometricians.</p>
+<p><strong>Initial Estimates and boundaries for population parameters</strong></p>
+<p><code>nlmixr</code> models are contained in a R function with two blocks:
+<code>ini</code> and <code>model</code>. This R function can be named
+anything, but is not meant to be called directly from R. In fact,
+if you try you will likely get an error such as <code>Error: could  not find function &quot;ini&quot;</code>.</p>
+<p><strong>The <code>ini</code> model block</strong></p>
+<p>The <code>ini</code> model block is meant to hold the initial estimates
+for the model, and the boundaries of the parameters for estimation
+routines that support boundaries (note <code>nlmixr</code>’s <code>saem</code>
+and [nlme] do not currently support parameter boundaries).</p>
+<p>To explain how these initial estimates are specified we will start
+with an annotated example:</p>
+<pre class="sourceCode r"><code class="sourceCode r"> f &lt;-<span class="st"> </span><span class="cf">function</span>(){ <span class="co">## Note the arguments to the function are currently</span>
+                  <span class="co">## ignored by `nlmixr`</span>
+     <span class="kw">ini</span>({
+         <span class="co">## Initial conditions for population parameters (sometimes</span>
+         <span class="co">## called theta parameters) are defined by either `&lt;-` or &#39;=&#39;</span>
+         lCl &lt;-<span class="st"> </span><span class="fl">1.6</span>      <span class="co">#log Cl (L/hr)</span>
+         <span class="co">## Note that simple expressions that evaluate to a number are</span>
+         <span class="co">## OK for defining initial conditions (like in R)</span>
+         lVc =<span class="st"> </span><span class="kw">log</span>(<span class="dv">90</span>)  <span class="co">#log V (L)</span>
+         <span class="co">## Also a comment on a parameter is captured as a parameter label</span>
+         lKa &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co">#log Ka (1/hr)</span>
+         <span class="co">## Bounds may be specified by c(lower, est, upper), like NONMEM:</span>
+         <span class="co">## Residuals errors are assumed to be population parameters</span>
+         prop.err &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)
+     })
+     <span class="co">## The model block will be discussed later</span>
+     <span class="kw">model</span>({})
+  }</code></pre>
+<p>As shown in the above examples:</p>
+<ul>
+<li>Simple parameter values are specified as a R-compatible assignment</li>
+<li>Boundaries may be specified by <code>c(lower, est, upper)</code>.</li>
+<li>Like NONMEM, <code>c(lower,est)</code> is equivalent to <code>c(lower,est,Inf)</code></li>
+<li>Also like NONMEM, <code>c(est)</code> does not specify a lower bound, and is equivalent
+to specifying the parameter without R’s <code>c</code> function.</li>
+<li>The initial estimates of the between subject variabilities are specified on the variance scale, and in analogy with
+NONMEM, the square roots of the diagonal elements correspond to coefficients of variation when used in the exponential IIV implementation. This is true, since this is an approximation. When displaying %CV in the <code>nlmixr</code> table, it uses: <code>sqrt(exp(v) - 1) * 100</code> where <code>v</code>=variance of the Omega formula.</li>
+</ul>
+<p>These parameters can be called by almost any R-compatible name. Please note that:</p>
+<ul>
+<li>Residual error estimates should be coded as population estimates (i.e. using an
+‘=’ or ‘&lt;-’ statement, not a ‘~’). These are specified on a standard deviation scale.</li>
+<li>Variable names starting with “<code>_</code>” are not supported. Note that R does not
+allow variable starting with “<code>_</code>” to be assigned without quoting them.</li>
+<li>Variable names starting with “<code>rx_</code>” or “<code>nlmixr_</code>” are not supported, since
+<code>RxODE</code> and <code>nlmixr</code> use these prefixes internally for certain estimation
+routines and for calculating residuals.</li>
+<li>Variable names are case sensitive, just like they are in R. “<code>CL</code>” is not the
+same as “<code>Cl</code>”.</li>
+</ul>
+<p><strong>Initial estimates for between-subject error distributions</strong></p>
+<p>In mixture models, multivariate normal individual deviations from
+the population parameters are estimated (in <code>NONMEM</code> these are
+called <code>ETA</code> parameters). Additionally, the
+variance/covariance matrix of these deviations are also estimated
+(in <code>NONMEM</code> this is the <code>OMEGA</code> matrix). The initial estimates for variance are specified by the <code>~</code> operator in <code>nlmixr</code>, which
+is typically used in R to denote “modeled by”, and was chosen to
+distinguish these estimates from the population and residual error
+parameters.</p>
+<p>Continuing the prior example, we can annotate the estimates for
+the between subject error distribution:</p>
+<pre class="sourceCode r"><code class="sourceCode r"> f &lt;-<span class="st"> </span><span class="cf">function</span>(){
+     <span class="kw">ini</span>({
+         lCl &lt;-<span class="st"> </span><span class="fl">1.6</span>      <span class="co">#log Cl (L/hr)</span>
+         lVc =<span class="st"> </span><span class="kw">log</span>(<span class="dv">90</span>)   <span class="co">#log V (L)</span>
+         lKa &lt;-<span class="st"> </span><span class="dv">1</span>        <span class="co">#log Ka (1/hr)</span>
+         prop.err &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)
+         <span class="co">## Initial estimate for ka IIV variance</span>
+         <span class="co">## Labels work for single parameters</span>
+         eta.ka <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>    <span class="co">#BSV Ka</span>
+
+         <span class="co">## For correlated parameters, you specify the names of each</span>
+         <span class="co">## correlated parameter separated by a addition operator `+`</span>
+         <span class="co">## and the left handed side specifies the lower triangular</span>
+         <span class="co">## matrix initial of the covariance matrix.</span>
+         eta.cl <span class="op">+</span><span class="st"> </span>eta.vc <span class="op">~</span><span class="st"> </span><span class="kw">c</span>(<span class="fl">0.1</span>,
+                             <span class="fl">0.005</span>, <span class="fl">0.1</span>)
+         <span class="co">## Note that labels do not currently work for correlated</span>
+         <span class="co">## parameters.  Also do not put comments inside the lower</span>
+         <span class="co">## triangular matrix as this will currently break the model.</span>
+     })
+     <span class="co">## The model block will be discussed later</span>
+     <span class="kw">model</span>({})
+ }</code></pre>
+<p>As shown in the above examples:</p>
+<ul>
+<li>Simple variances are specified by the variable name and the
+estimate separated by <code>~</code>.</li>
+<li>Correlated parameters are specified by the sum of the variable
+labels and then the lower triangular matrix of the covariance is
+specified on the left hand side of the equation. This is also
+separated by <code>~</code>.
+}</li>
+</ul>
+<p>Currently the model syntax does not allow comments inside the
+lower triangular matrix.</p>
+<p><strong>Model syntax for ODE-based models</strong></p>
+<p><strong>The <code>ini</code> model block</strong>
+Once the initialization block has been defined, you can define a
+<code>model</code> block in terms of the defined variables in the <code>ini</code> block. You can
+also mix in <code>RxODE</code> blocks into the model. This section is analogous to NONMEM’s <code>$PK</code>, <code>$PRED</code>, <code>$DES</code> and <code>$ERROR</code> blocks.</p>
+<p>The current method of defining an <code>nlmixr</code> model is to specify the
+parameters, and then possibly the <code>RxODE</code> lines:</p>
+<p>Continuing describing the syntax with an annotated example:</p>
+<pre class="sourceCode r"><code class="sourceCode r"> f &lt;-<span class="st"> </span><span class="cf">function</span>(){
+     <span class="kw">ini</span>({
+         lCl &lt;-<span class="st"> </span><span class="fl">1.6</span>      <span class="co">#log Cl (L/hr)</span>
+         lVc &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="dv">90</span>)  <span class="co">#log Vc (L)</span>
+         lKA &lt;-<span class="st"> </span><span class="fl">0.1</span>      <span class="co">#log Ka (1/hr)</span>
+         prop.err &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)
+         eta.Cl <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span> <span class="co">## BSV Cl</span>
+         eta.Vc <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span> <span class="co">## BSV Vc</span>
+         eta.KA <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span> <span class="co">## BSV Ka</span>
+     })
+     <span class="kw">model</span>({
+         <span class="co">## First parameters are defined in terms of the initial estimates</span>
+         <span class="co">## parameter names.</span>
+         Cl &lt;-<span class="st"> </span><span class="kw">exp</span>(lCl <span class="op">+</span><span class="st"> </span>eta.Cl)
+         Vc &lt;-<span class="st"> </span><span class="kw">exp</span>(lVc <span class="op">+</span><span class="st"> </span>eta.Vc)
+         KA &lt;-<span class="st"> </span><span class="kw">exp</span>(lKA <span class="op">+</span><span class="st"> </span>eta.KA)
+         <span class="co">## After the differential equations are defined</span>
+         kel &lt;-<span class="st"> </span>Cl <span class="op">/</span><span class="st"> </span>Vc;
+         d<span class="op">/</span><span class="kw">dt</span>(depot)  =<span class="st"> </span><span class="op">-</span>KA<span class="op">*</span>depot;
+         d<span class="op">/</span><span class="kw">dt</span>(centr)  =<span class="st">  </span>KA<span class="op">*</span>depot<span class="op">-</span>kel<span class="op">*</span>centr;
+         <span class="co">## And the concentration is then calculated</span>
+         cp =<span class="st"> </span>centr <span class="op">/</span><span class="st"> </span>Vc;
+         <span class="co">## Last, nlmixr is told that the plasma concentration follows</span>
+         <span class="co">## a proportional error (estimated by the parameter prop.err)</span>
+         cp <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)
+     })
+ }</code></pre>
+<p>A few points to note:</p>
+<ul>
+<li>Parameters are defined before the differential equations. Currently,
+defining the differential equations directly in terms of the population
+parameters is not supported.</li>
+<li>The differential equations, parameters and error terms are in a single
+block, instead of multiple sections.</li>
+<li>State names, calculated variables cannot start with either “<code>rx_</code>” or “<code>nlmixr_</code>” since these are reserved terms for internal use in some estimation routines.</li>
+<li>Errors are specified using <code>~</code>. Currently you can use either <code>add(parameter)</code> for additive error, <code>prop(parameter)</code> for proportional error or <code>add(parameter1) + prop(parameter2)</code> for combined additive and proportional error. You can also specify <code>norm(parameter)</code> for the additive error, since it follows a normal distribution.</li>
+<li>Some algorithms, like <code>saem</code>, require parameters in terms of <code>Pop.Parameter + Individual.Deviation.Parameter + Covariate*Covariate.Parameter</code>.
+The order of these parameters do not matter. The approach is similar to NONMEM’s mu-referencing.</li>
+<li>The type of parameter (population parameter estimate, or individual parameter deviation) in the model is determined by the initial block; Covariates used in the model are missing in the <code>ini</code> block. These variables need to be present in the modeling dataset for the model to run.</li>
+</ul>
+<p><strong>Model Syntax for solved PK systems</strong></p>
+<p>Solved PK systems are currently supported by <code>nlmixr</code> with the
+<code>linCmt()</code> pseudo-function. An annotated example of a solved
+system is below:</p>
+<pre class="sourceCode r"><code class="sourceCode r"> f &lt;-<span class="st"> </span><span class="cf">function</span>(){
+     <span class="kw">ini</span>({
+         lCl &lt;-<span class="st"> </span><span class="fl">1.6</span>      <span class="co">#log Cl (L/hr)</span>
+         lVc &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="dv">90</span>)  <span class="co">#log Vc (L)</span>
+         lKA &lt;-<span class="st"> </span><span class="fl">0.1</span>      <span class="co">#log Ka (1/hr)</span>
+         prop.err &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)
+         eta.Cl <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span> <span class="co">## BSV Cl</span>
+         eta.Vc <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span> <span class="co">## BSV Vc</span>
+         eta.KA <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span> <span class="co">## BSV Ka</span>
+     })
+     <span class="kw">model</span>({
+         Cl &lt;-<span class="st"> </span><span class="kw">exp</span>(lCl <span class="op">+</span><span class="st"> </span>eta.Cl)
+         Vc &lt;-<span class="st"> </span><span class="kw">exp</span>(lVc <span class="op">+</span><span class="st"> </span>eta.Vc)
+         KA &lt;-<span class="st"> </span><span class="kw">exp</span>(lKA <span class="op">+</span><span class="st"> </span>eta.KA)
+         <span class="co">## Instead of specifying the ODEs, you can use</span>
+         <span class="co">## the linCmt() function to use the solved system.</span>
+         <span class="co">##</span>
+         <span class="co">## This function determines the type of PK solved system</span>
+         <span class="co">## to use by the parameters that are defined.  In this case</span>
+         <span class="co">## it knows that this is a one-compartment model with first-order</span>
+         <span class="co">## absorption.</span>
+         <span class="kw">linCmt</span>() <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)
+     })
+ }</code></pre>
+<p>A few things to keep in mind:</p>
+<ul>
+<li>Currently the solved systems support either oral dosing, IV dosing
+or IV infusion dosing, but does not allow mixing the dosing types.</li>
+<li>While RxODE allows mixing of solved systems and ODEs, this has not
+been implemented in <code>nlmixr</code> yet.</li>
+<li>The solved systems implemented are the one-, two- and three-compartment
+models with or without first-order absorption. Each of the models support a
+lag time with a <code>tlag</code> parameter (although currently <code>tlag</code> will cause the CWRES/OBJF calculation to fail).</li>
+<li>The <code>linCmt()</code> function figures out the model from the parameter names.
+<code>nlmixr</code> currently knows about numbered volumes, Vc/Vp, clearances in terms of both CL and
+Q/CLD. Additionally, <code>nlmixr</code> knows about elimination micro-constants (ie k12). Mixing of
+parameters and microconstants for is currently not supported.</li>
+</ul>
+<p><strong>Checking model syntax</strong></p>
+<p>After specifying the model syntax you can check that <code>nlmixr</code> is
+interpreting it correctly by using the <code>nlmixr</code> function on
+it.</p>
+<p>Using the above function we can get:</p>
+<pre class="sourceCode r"><code class="sourceCode r"> <span class="op">&gt;</span><span class="st"> </span><span class="kw">nlmixr</span>(f)
+ <span class="co">## 1-compartment model with first-order absorption in terms of Cl</span>
+ <span class="co">## Initialization:</span>
+ <span class="co">################################################################################</span>
+ Fixed <span class="kw">Effects</span> (<span class="op">$</span>theta)<span class="op">:</span>
+<span class="st">     </span>lCl     lVc     lKA
+ <span class="fl">1.60000</span> <span class="fl">4.49981</span> <span class="fl">0.10000</span>
+
+ <span class="kw">Omega</span> (<span class="op">$</span>omega)<span class="op">:</span>
+<span class="st">      </span>[,<span class="dv">1</span>] [,<span class="dv">2</span>] [,<span class="dv">3</span>]
+ [<span class="dv">1</span>,]  <span class="fl">0.1</span>  <span class="fl">0.0</span>  <span class="fl">0.0</span>
+ [<span class="dv">2</span>,]  <span class="fl">0.0</span>  <span class="fl">0.1</span>  <span class="fl">0.0</span>
+ [<span class="dv">3</span>,]  <span class="fl">0.0</span>  <span class="fl">0.0</span>  <span class="fl">0.1</span>
+
+ <span class="co">## Model:</span>
+ <span class="co">################################################################################</span>
+ Cl &lt;-<span class="st"> </span><span class="kw">exp</span>(lCl <span class="op">+</span><span class="st"> </span>eta.Cl)
+ Vc &lt;-<span class="st"> </span><span class="kw">exp</span>(lVc <span class="op">+</span><span class="st"> </span>eta.Vc)
+ KA &lt;-<span class="st"> </span><span class="kw">exp</span>(lKA <span class="op">+</span><span class="st"> </span>eta.KA)
+ <span class="co">## Instead of specifying the ODEs, you can use</span>
+ <span class="co">## the linCmt() function to use the solved system.</span>
+ <span class="co">##</span>
+ <span class="co">## This function determines the type of PK solved system</span>
+ <span class="co">## to use by the parameters that are defined.  In this case</span>
+ <span class="co">## it knows that this is a one-compartment model with first-order</span>
+ <span class="co">## absorption.</span>
+ <span class="kw">linCmt</span>() <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)</code></pre>
+<p>In general this gives you information about the model (what type
+of solved system/RxODE), initial estimates as well as the code for
+the model block.</p>
+<p><strong>Using the model syntax for estimating a model</strong></p>
+<p>Once the model function has been created, you can use it to estimate the parameters for a model given a dataset.</p>
+<p>This dataset has to have <code>RxODE</code> compatible event IDs. Both
+Monolix and NONMEM use a different dataset description. You may
+convert these datasets to RxODE-compatible datasets with the
+<code>nmDataConvert</code> function. Note that steady state
+doses are not supported by RxODE, and therefore not supported by
+the conversion function.</p>
+<p>As an example, we can use a simulated rich 1-compartment oral PK dataset.</p>
+<pre class="sourceCode r"><code class="sourceCode r">  d &lt;-<span class="st"> </span>Oral_1CPT
+  d &lt;-<span class="st"> </span>d[,<span class="kw">names</span>(d) <span class="op">!=</span><span class="st"> &quot;SS&quot;</span>];
+  d &lt;-<span class="st"> </span><span class="kw">nmDataConvert</span>(d);</code></pre>
+<p>Once the data has been converted to the appropriate format, you
+can use the <code>nlmixr</code> function to run the appropriate code.</p>
+<p>The method to execute the model is:</p>
+<pre class="sourceCode r"><code class="sourceCode r"> fit &lt;-<span class="st"> </span><span class="kw">nlmixr</span>(model.function, rxode.dataset, <span class="dt">est=</span><span class="st">&quot;est&quot;</span>,<span class="dt">control=</span><span class="kw">estControl</span>(options))</code></pre>
+<p>Currently <code>nlme</code> and <code>saem</code> are implemented. For example, to run the
+above model with <code>saem</code>, we could have the following:</p>
+<pre class="sourceCode r"><code class="sourceCode r"> <span class="op">&gt;</span><span class="st"> </span>f &lt;-<span class="st"> </span><span class="cf">function</span>(){
+     <span class="kw">ini</span>({
+         lCl &lt;-<span class="st"> </span><span class="fl">1.6</span>      <span class="co">#log Cl (L/hr)</span>
+         lVc &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="dv">90</span>)  <span class="co">#log Vc (L)</span>
+         lKA &lt;-<span class="st"> </span><span class="fl">0.1</span>      <span class="co">#log Ka (1/hr)</span>
+         prop.err &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)
+         eta.Cl <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span> <span class="co">## BSV Cl</span>
+         eta.Vc <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span> <span class="co">## BSV Vc</span>
+         eta.KA <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span> <span class="co">## BSV Ka</span>
+     })
+     <span class="kw">model</span>({
+         <span class="co">## First parameters are defined in terms of the initial estimates</span>
+         <span class="co">## parameter names.</span>
+         Cl &lt;-<span class="st"> </span><span class="kw">exp</span>(lCl <span class="op">+</span><span class="st"> </span>eta.Cl)
+         Vc &lt;-<span class="st"> </span><span class="kw">exp</span>(lVc <span class="op">+</span><span class="st"> </span>eta.Vc)
+         KA &lt;-<span class="st"> </span><span class="kw">exp</span>(lKA <span class="op">+</span><span class="st"> </span>eta.KA)
+         <span class="co">## After the differential equations are defined</span>
+         kel &lt;-<span class="st"> </span>Cl <span class="op">/</span><span class="st"> </span>Vc;
+         d<span class="op">/</span><span class="kw">dt</span>(depot)    =<span class="st"> </span><span class="op">-</span>KA<span class="op">*</span>depot;
+         d<span class="op">/</span><span class="kw">dt</span>(centr)  =<span class="st">  </span>KA<span class="op">*</span>depot<span class="op">-</span>kel<span class="op">*</span>centr;
+         <span class="co">## And the concentration is then calculated</span>
+         cp =<span class="st"> </span>centr <span class="op">/</span><span class="st"> </span>Vc;
+         <span class="co">## Last, nlmixr is told that the plasma concentration follows</span>
+         <span class="co">## a proportional error (estimated by the parameter prop.err)</span>
+         cp <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)
+     })
+ }
+ <span class="op">&gt;</span><span class="st"> </span>fit.s &lt;-<span class="st"> </span><span class="kw">nlmixr</span>(f,d,<span class="dt">est=</span><span class="st">&quot;saem&quot;</span>,<span class="dt">control=</span><span class="kw">saemControl</span>(<span class="dt">n.burn=</span><span class="dv">50</span>,<span class="dt">n.em=</span><span class="dv">100</span>,<span class="dt">print=</span><span class="dv">50</span>));
+ Compiling RxODE differential equations...done.
+ c<span class="op">:</span><span class="er">/</span>Rtools<span class="op">/</span>mingw_<span class="dv">64</span><span class="op">/</span>bin<span class="op">/</span>g<span class="op">++</span><span class="st">  </span><span class="op">-</span>I<span class="st">&quot;c:/R/R-34~1.1/include&quot;</span> <span class="op">-</span>DNDEBUG     <span class="op">-</span>I<span class="st">&quot;d:/Compiler/gcc-4.9.3/local330/include&quot;</span>  <span class="op">-</span>Ic<span class="op">:</span><span class="er">/</span>nlmixr<span class="op">/</span>inst<span class="op">/</span>include <span class="op">-</span>Ic<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>library<span class="op">/</span>STANHE<span class="op">~</span><span class="dv">1</span><span class="op">/</span>include <span class="op">-</span>Ic<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>library<span class="op">/</span>Rcpp<span class="op">/</span>include <span class="op">-</span>Ic<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>library<span class="op">/</span>RCPPAR<span class="op">~</span><span class="dv">1</span><span class="op">/</span>include <span class="op">-</span>Ic<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>library<span class="op">/</span>RCPPEI<span class="op">~</span><span class="dv">1</span><span class="op">/</span>include <span class="op">-</span>Ic<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>library<span class="op">/</span>BH<span class="op">/</span>include   <span class="op">-</span>O2 <span class="op">-</span>Wall  <span class="op">-</span>mtune=core2 <span class="op">-</span>c saem3090757b4bd1x64.cpp <span class="op">-</span>o saem3090757b4bd1x64.o
+ In file included from c<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>library<span class="op">/</span>RCPPAR<span class="op">~</span><span class="dv">1</span><span class="op">/</span>include<span class="op">/</span>armadillo<span class="op">:</span><span class="dv">52</span><span class="op">:</span><span class="dv">0</span>,
+                  from c<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>library<span class="op">/</span>RCPPAR<span class="op">~</span><span class="dv">1</span><span class="op">/</span>include<span class="op">/</span>RcppArmadilloForward.h<span class="op">:</span><span class="dv">46</span>,
+                  from c<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>library<span class="op">/</span>RCPPAR<span class="op">~</span><span class="dv">1</span><span class="op">/</span>include<span class="op">/</span>RcppArmadillo.h<span class="op">:</span><span class="dv">31</span>,
+                  from saem3090757b4bd1x64.cpp<span class="op">:</span><span class="dv">1</span><span class="op">:</span>
+<span class="st"> </span>c<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>library<span class="op">/</span>RCPPAR<span class="op">~</span><span class="dv">1</span><span class="op">/</span>include<span class="op">/</span>armadillo_bits<span class="op">/</span>compiler_setup.hpp<span class="op">:</span><span class="dv">474</span><span class="op">:</span><span class="dv">96</span><span class="op">:</span><span class="st"> </span>note<span class="op">:</span><span class="st"> </span><span class="co">#pragma message: </span><span class="al">WARNING</span><span class="co">: use of OpenMP disabled; this compiler doesn&#39;t support OpenMP 3.0+</span>
+<span class="st">    </span><span class="co">#pragma message (&quot;WARNING: use of OpenMP disabled; this compiler doesn&#39;t support OpenMP 3.0+&quot;)</span>
+<span class="st">                                                                                                 </span><span class="er">^</span>
+<span class="st"> </span>c<span class="op">:</span><span class="er">/</span>Rtools<span class="op">/</span>mingw_<span class="dv">64</span><span class="op">/</span>bin<span class="op">/</span>g<span class="op">++</span><span class="st"> </span><span class="op">-</span>shared <span class="op">-</span>s <span class="op">-</span>static<span class="op">-</span>libgcc <span class="op">-</span>o saem3090757b4bd1x64.dll tmp.def saem3090757b4bd1x64.o c<span class="op">:</span><span class="er">/</span>nlmixr<span class="op">/</span>R<span class="op">/</span>rx_855815def56a50f0e7a80e48811d947c_x64.dll <span class="op">-</span>Lc<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>bin<span class="op">/</span>x64 <span class="op">-</span>lRblas <span class="op">-</span>Lc<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>bin<span class="op">/</span>x64 <span class="op">-</span>lRlapack <span class="op">-</span>lgfortran <span class="op">-</span>lm <span class="op">-</span>lquadmath <span class="op">-</span>Ld<span class="op">:</span><span class="er">/</span>Compiler<span class="op">/</span>gcc<span class="dv">-4</span>.<span class="fl">9.3</span><span class="op">/</span>local330<span class="op">/</span>lib<span class="op">/</span>x64 <span class="op">-</span>Ld<span class="op">:</span><span class="er">/</span>Compiler<span class="op">/</span>gcc<span class="dv">-4</span>.<span class="fl">9.3</span><span class="op">/</span>local330<span class="op">/</span>lib <span class="op">-</span>Lc<span class="op">:</span><span class="er">/</span>R<span class="op">/</span>R<span class="dv">-34</span><span class="op">~</span><span class="fl">1.1</span><span class="op">/</span>bin<span class="op">/</span>x64 <span class="op">-</span>lR
+ done.
+ <span class="dv">1</span><span class="op">:</span><span class="st">    </span><span class="fl">1.8174</span>   <span class="fl">4.6328</span>   <span class="fl">0.0553</span>   <span class="fl">0.0950</span>   <span class="fl">0.0950</span>   <span class="fl">0.0950</span>   <span class="fl">0.6357</span>
+ <span class="dv">50</span><span class="op">:</span><span class="st">    </span><span class="fl">1.3900</span>   <span class="fl">4.2039</span>   <span class="fl">0.0001</span>   <span class="fl">0.0679</span>   <span class="fl">0.0784</span>   <span class="fl">0.1082</span>   <span class="fl">0.1992</span>
+ <span class="dv">100</span><span class="op">:</span><span class="st">    </span><span class="fl">1.3894</span>   <span class="fl">4.2054</span>   <span class="fl">0.0107</span>   <span class="fl">0.0686</span>   <span class="fl">0.0777</span>   <span class="fl">0.1111</span>   <span class="fl">0.1981</span>
+ <span class="dv">150</span><span class="op">:</span><span class="st">    </span><span class="fl">1.3885</span>   <span class="fl">4.2041</span>   <span class="fl">0.0089</span>   <span class="fl">0.0683</span>   <span class="fl">0.0778</span>   <span class="fl">0.1117</span>   <span class="fl">0.1980</span>
+ Using sympy via SnakeCharmR
+ <span class="co">## Calculate ETA-based prediction and error derivatives:</span>
+ Calculate Jacobian...................done.
+ Calculate sensitivities.......
+ done.
+ <span class="co">## Calculate d(f)/d(eta)</span>
+ <span class="co">## ...</span>
+ <span class="co">## done</span>
+ <span class="co">## ...</span>
+ <span class="co">## done</span>
+ The model<span class="op">-</span>based sensitivities have been calculated.
+ It will be cached <span class="cf">for</span> future runs.
+ Calculating Table Variables...
+ done</code></pre>
+<p>The options for <code>saem</code> are controlled by <code>saemControl</code>.
+You may wish to make sure the minimization is complete in the case
+of <code>saem</code>. You can do that with <code>traceplot</code>, which shows the
+iteration history with burn-in and EM phases. In
+this case, the burn-in seems reasonable; you may wish to increase
+the number of iterations in the EM phase of the estimation.
+Overall it is probably a semi-reasonable solution. (<code>xpose.nlmixr</code>’s <code>prm_vs_iteration()</code> can also do this.)</p>
+<p><strong><code>nlmixr</code> output objects</strong></p>
+<p>In addition to unifying the modeling language sent to each of the
+estimation routines, the outputs currently have a unified structure.</p>
+<p>You can see the fit object by typing the object name:</p>
+<pre class="sourceCode r"><code class="sourceCode r"> <span class="op">&gt;</span><span class="st"> </span>fit.s
+ nlmixr SAEM <span class="kw">fit</span> (ODE)
+
+      OBJF      AIC      BIC Log<span class="op">-</span>likelihood
+  <span class="fl">62335.96</span> <span class="fl">62349.96</span> <span class="fl">62397.88</span>      <span class="fl">-31167.98</span>
+
+ <span class="kw">Time</span> (sec; <span class="op">$</span>time)<span class="op">:</span>
+<span class="st">           </span>saem setup FOCEi Evaulate covariance table
+ elapsed <span class="fl">379.32</span>   <span class="fl">2.9</span>           <span class="fl">1.71</span>          <span class="dv">0</span> <span class="fl">19.11</span>
+
+ <span class="kw">Parameters</span> (<span class="op">$</span>par.fixed)<span class="op">:</span>
+<span class="st">              </span>Parameter Estimate     SE     CV <span class="kw">Untransformed</span>       (<span class="dv">95</span>%CI)
+ lCl      log <span class="kw">Cl</span> (L<span class="op">/</span>hr)     <span class="fl">1.39</span> <span class="fl">0.0240</span>   <span class="fl">1.7</span>%          <span class="fl">4.01</span>  (<span class="fl">3.82</span>, <span class="fl">4.20</span>)
+ lVc         log <span class="kw">Vc</span> (L)     <span class="fl">4.20</span> <span class="fl">0.0256</span>   <span class="fl">0.6</span>%          <span class="fl">67.0</span>  (<span class="fl">63.7</span>, <span class="fl">70.4</span>)
+ lKA      log <span class="kw">Ka</span> (<span class="dv">1</span><span class="op">/</span>hr)  <span class="fl">0.00890</span> <span class="fl">0.0307</span> <span class="fl">344.9</span>%          <span class="fl">1.01</span> (<span class="fl">0.950</span>, <span class="fl">1.07</span>)
+ prop.err                  <span class="fl">0.198</span>                       <span class="fl">19.8</span>%
+
+ <span class="kw">Omega</span> (<span class="op">$</span>omega)<span class="op">:</span>
+<span class="st">            </span>eta.Cl     eta.Vc   eta.KA
+ eta.Cl <span class="fl">0.06833621</span> <span class="fl">0.00000000</span> <span class="fl">0.000000</span>
+ eta.Vc <span class="fl">0.00000000</span> <span class="fl">0.07783316</span> <span class="fl">0.000000</span>
+ eta.KA <span class="fl">0.00000000</span> <span class="fl">0.00000000</span> <span class="fl">0.111673</span>
+
+ Fit <span class="kw">Data</span> (object is a modified data.frame)<span class="op">:</span>
+<span class="st">        </span>ID   TIME    DV      IPRED      PRED         IRES        RES       IWRES
+    <span class="dv">1</span><span class="op">:</span><span class="st">   </span><span class="dv">1</span>   <span class="fl">0.25</span> <span class="fl">204.8</span> <span class="fl">194.859810</span> <span class="fl">198.21076</span>   <span class="fl">9.94018953</span>   <span class="fl">6.589244</span>  <span class="fl">0.25766777</span>
+    <span class="dv">2</span><span class="op">:</span><span class="st">   </span><span class="dv">1</span>   <span class="fl">0.50</span> <span class="fl">310.6</span> <span class="fl">338.006073</span> <span class="fl">349.28827</span> <span class="fl">-27.40607290</span> <span class="fl">-38.688274</span> <span class="fl">-0.40955290</span>
+    <span class="dv">3</span><span class="op">:</span><span class="st">   </span><span class="dv">1</span>   <span class="fl">0.75</span> <span class="fl">389.2</span> <span class="fl">442.467750</span> <span class="fl">463.78410</span> <span class="fl">-53.26775045</span> <span class="fl">-74.584098</span> <span class="fl">-0.60809361</span>
+   <span class="op">---</span>
+<span class="st"> </span><span class="dv">6945</span><span class="op">:</span><span class="st"> </span><span class="dv">120</span> <span class="fl">264.00</span>  <span class="fl">11.3</span>  <span class="fl">13.840800</span>  <span class="fl">70.58248</span>  <span class="fl">-2.54080024</span> <span class="fl">-59.282475</span> <span class="fl">-0.92725039</span>
+ <span class="dv">6946</span><span class="op">:</span><span class="st"> </span><span class="dv">120</span> <span class="fl">276.00</span>   <span class="fl">3.9</span>   <span class="fl">4.444197</span>  <span class="fl">34.41018</span>  <span class="fl">-0.54419655</span> <span class="fl">-30.510177</span> <span class="fl">-0.61851500</span>
+ <span class="dv">6947</span><span class="op">:</span><span class="st"> </span><span class="dv">120</span> <span class="fl">288.00</span>   <span class="fl">1.4</span>   <span class="fl">1.427006</span>  <span class="fl">16.77557</span>  <span class="fl">-0.02700637</span> <span class="fl">-15.375569</span> <span class="fl">-0.09559342</span>
+              WRES       CWRES     CPRED      CRES     eta.Cl     eta.Vc
+    <span class="dv">1</span><span class="op">:</span><span class="st">  </span><span class="fl">0.07395107</span>  <span class="fl">0.07349997</span> <span class="fl">198.41341</span>   <span class="fl">6.38659</span> <span class="fl">0.09153143</span>  <span class="fl">0.1366395</span>
+    <span class="dv">2</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.26081216</span> <span class="fl">-0.27717947</span> <span class="fl">349.82730</span> <span class="fl">-39.22730</span> <span class="fl">0.09153143</span>  <span class="fl">0.1366395</span>
+    <span class="dv">3</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.39860485</span> <span class="fl">-0.42988445</span> <span class="fl">464.55651</span> <span class="fl">-75.35651</span> <span class="fl">0.09153143</span>  <span class="fl">0.1366395</span>
+   <span class="op">---</span>
+<span class="st"> </span><span class="dv">6945</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.77916115</span> <span class="fl">-1.34050999</span>  <span class="fl">41.10189</span> <span class="fl">-29.80189</span> <span class="fl">0.32007359</span> <span class="fl">-0.1381479</span>
+ <span class="dv">6946</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.65906613</span> <span class="fl">-1.28359979</span>  <span class="fl">15.51100</span> <span class="fl">-11.61100</span> <span class="fl">0.32007359</span> <span class="fl">-0.1381479</span>
+ <span class="dv">6947</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.56746681</span> <span class="fl">-1.22839732</span>   <span class="fl">5.72332</span>  <span class="fl">-4.32332</span> <span class="fl">0.32007359</span> <span class="fl">-0.1381479</span>
+           eta.KA
+    <span class="dv">1</span><span class="op">:</span><span class="st">  </span><span class="fl">0.1369685</span>
+    <span class="dv">2</span><span class="op">:</span><span class="st">  </span><span class="fl">0.1369685</span>
+    <span class="dv">3</span><span class="op">:</span><span class="st">  </span><span class="fl">0.1369685</span>
+   <span class="op">---</span>
+<span class="st"> </span><span class="dv">6945</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.2381078</span>
+ <span class="dv">6946</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.2381078</span>
+ <span class="dv">6947</span><span class="op">:</span><span class="st"> </span><span class="fl">-0.2381078</span></code></pre>
+<p>This example shows the standard printout of an <code>nlmixr</code> fit object. The elements of the fit are:</p>
+<ul>
+<li>The type of fit (<code>nlme</code>, <code>saem</code>, etc)</li>
+<li><p>Metrics of goodness of fit (<code>AIC</code>, <code>BIC</code>,
+and <code>logLik</code>).</p>
+<ul>
+<li>To align the comparison between methods, the FOCEi likelihood objective is calculated
+regardless of the method used and used for goodness of fit metrics.</li>
+<li>This FOCEi likelihood has been compared to NONMEM’s objective function and gives
+the same values (based on the data in <strong>Wang 2007</strong> <span class="citation">(<a href="#ref-Wang2007">2007</a>)</span>)</li>
+<li>Note that FOCEi is used to calculate the objective function for a <code>saem</code> fit.</li>
+<li>Even though the objective functions are calculated in the same manner, caution should
+be used when comparing fits from different estimation routines.</li>
+</ul></li>
+</ul>
+<p>The next item is the timing of each of the steps of the fit.</p>
+<ul>
+<li>These can be accessed by (<code>fit.s$time</code>).</li>
+<li>As a mnemonic, the access for this item is shown in the printout. This is true for
+almost all of the other items in the printout.</li>
+</ul>
+<p>After the timing of the fit, the parameter estimates are displayed (can be accessed by
+<code>fit.s$par.fixed</code></p>
+<ul>
+<li>While the items are rounded for R printing, each estimate without rounding is still accessible by the <code>$</code> syntax.
+For example, the <code>$Untransformed</code> gives the untransformed parameter values.</li>
+<li>The Untransformed parameter takes log-space parameters and back-transforms them to normal parameters. Not the CIs are listed on the back-transformed parameter space.</li>
+<li><p>Proportional Errors are converted to %CV on the untransformed space</p></li>
+<li><p>Omega block (accessed by <code>fit.s$omega</code>)</p></li>
+</ul>
+<p>A table of fit data is also supplied. Please note:</p>
+<ul>
+<li>An <code>nlmixr</code> fit object is actually a data frame. Saving it as a Rdata object and then loading it without <code>nlmixr</code> will just show the data by itself. The additional fit information is still present, but <code>nlmixr</code> must be loaded in order to see it.</li>
+<li>Special access to fit information (like the <code>$omega</code>) needs <code>nlmixr</code> to extract the information.</li>
+</ul>
+<p>If you use the <code>$</code> to access information, the order of precedence is:</p>
+<ul>
+<li>Fit data from the overall data.frame</li>
+<li>Information about the parsed <code>nlmixr</code> model (via <code>$uif</code>)</li>
+<li>Parameter history if available (via <code>$par.hist</code> and <code>$par.hist.stacked</code>)</li>
+<li>Fixed effects table (via <code>$par.fixed</code>)</li>
+<li>Individual differences from the typical population parameters (via <code>$eta</code>)</li>
+<li>Fit information from the list of information generated during the post-hoc residual calculation.</li>
+<li>Fit information from the environment where the post-hoc residual were calculated</li>
+<li>Fit information about how the data and options interacted with the specified model
+(such as estimation options or if the solved system is for an infusion or an IV bolus).</li>
+</ul>
+<p>While the printout may display the data as a <code>data.table</code> object or <code>tbl</code>
+object, the data is NOT any of these objects, but rather a derived data frame.
+- Since the object **is*}** a <code>data.frame</code>, you can treat it like one.</p>
+<p>In addition to the above properties of the fit object, there are a
+few additional that may be helpful for the modeler:</p>
+<ul>
+<li><code>$theta</code> gives the fixed effects parameter estimates (in NONMEM the
+<code>theta</code>s). This can also be accessed in <code>nlme</code> function. Note that the residual variability is treated as a fixed effect parameter
+and is included in this list.</li>
+<li><code>$eta</code> gives the random effects parameter estimates, or in NONMEM the
+<code>eta</code>s. This can also be accessed in using the <code>random.effects</code>
+function.</li>
+</ul>
+</div>
+<div id="some-examples" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Some examples</h3>
+<div id="a-two-compartment-pk-model" class="section level4">
+<h4><span class="header-section-number">3.1.2.1</span> A two-compartment PK model</h4>
+<p>Now let’s have a look at some examples to demonstrate the syntax. Here’s a relatively straightforward two-compartmental PK model with covariate effects.</p>
+<pre class="sourceCode r"><code class="sourceCode r">my2CptModel &lt;-<span class="st"> </span><span class="cf">function</span>() {
+  <span class="kw">ini</span>({
+    tka &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">1.14</span>)
+    tcl &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">0.0190</span>)
+    tv2  &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">2.12</span>)
+    tv3  &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">20.4</span>)
+    tq   &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">0.383</span>)
+    wteff  &lt;-<span class="st"> </span><span class="fl">0.35</span>
+    sexeff &lt;-<span class="st"> </span><span class="fl">-0.2</span>
+    eta.ka <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    eta.cl <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    eta.v2 <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    eta.v3 <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    eta.q <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    prop.err &lt;-<span class="st"> </span><span class="fl">0.075</span>
+  })
+  <span class="kw">model</span>({
+    ka &lt;-<span class="st"> </span><span class="kw">exp</span>(tka <span class="op">+</span><span class="st"> </span>eta.ka)
+    cl &lt;-<span class="st"> </span><span class="kw">exp</span>(tcl <span class="op">+</span><span class="st"> </span>wteff<span class="op">*</span>lWT <span class="op">+</span><span class="st"> </span>eta.cl)
+    v2 &lt;-<span class="st"> </span><span class="kw">exp</span>(tv2 <span class="op">+</span><span class="st"> </span>sexeff<span class="op">*</span>SEX <span class="op">+</span><span class="st"> </span>eta.v2)
+    v3 &lt;-<span class="st"> </span><span class="kw">exp</span>(tv3 <span class="op">+</span><span class="st"> </span>eta.v3)
+    q  &lt;-<span class="st"> </span><span class="kw">exp</span>(tq <span class="op">+</span><span class="st"> </span>eta.q)
+    d<span class="op">/</span><span class="kw">dt</span>(depot) =<span class="st"> </span><span class="op">-</span>ka <span class="op">*</span><span class="st"> </span>depot
+    d<span class="op">/</span><span class="kw">dt</span>(center) =<span class="st"> </span>ka <span class="op">*</span><span class="st"> </span>depot <span class="op">-</span><span class="st"> </span>cl <span class="op">/</span><span class="st"> </span>v2 <span class="op">*</span><span class="st"> </span>center <span class="op">+</span><span class="st"> </span>q<span class="op">/</span>v3 <span class="op">*</span><span class="st"> </span>periph <span class="op">-</span><span class="st"> </span>q<span class="op">/</span>v2 <span class="op">*</span><span class="st"> </span>center
+    d<span class="op">/</span><span class="kw">dt</span>(periph) =<span class="st"> </span>q<span class="op">/</span>v2 <span class="op">*</span><span class="st"> </span>center <span class="op">-</span><span class="st"> </span>q<span class="op">/</span>v3 <span class="op">*</span><span class="st"> </span>periph
+    cp =<span class="st"> </span>center <span class="op">/</span><span class="st"> </span>v2
+    cp <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)
+  })
+}
+
+my2CptFit &lt;-<span class="st"> </span><span class="kw">nlmixr</span>(my2CptModel, dat, <span class="dt">est=</span><span class="st">&quot;saem&quot;</span>)</code></pre>
+<p>We will fit this model using SAEM, so we have included random effects on every model parameter. We have also chosen to use ODEs rather than <code>linCmt()</code>.</p>
+<p>Notice how covariates have been included. <code>lWT</code> is pre-processed body weight (<code>log(WT/70)</code>) and <code>SEX</code> is a binary variable equal to 0 (male) or 1 (female).</p>
+<p>Let’s inspect the results…</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(my2CptFit)</code></pre>
+<pre><code>## -- nlmixr SAEM fit (ODE); OBJF calculated from FOCEi approximation ----------------------------------------------------------------------------------------------------------------------------------------------------
+##     OBJF      AIC      BIC Log-likelihood Condition Number
+## 3178.892 3204.892 3255.411      -1589.446         650007.1
+##</code></pre>
+<p>Objective function (OBJF), Akaike information criterion (AIC), Bayesian information criterion (BIC), the log-likelihood of the model given the data, and the condition number are provided at the top of the output block. This more, judging from the condition number (the ratio between the largest and smallest eigenvalues), may be over-parameterized. For this SAEM model, the OBJF has been calculated using the FOCEi method.</p>
+<pre><code>## -- Time (sec; $time): ---------------------------------------------------------------------------------------------------------------------------
+##           saem setup Likelihood Calculation covariance table
+## elapsed 547.67 23.31                   0.72          0  1.81
+##</code></pre>
+<p>Next, we have a block showing benchmarks for the run. This fit took just under 10 minutes in total.</p>
+<pre><code>## -- Parameters ($par.fixed): ---------------------------------------------------------------------------------------------------------------------
+##          Estimate       SE    %RSE Back-transformed(95%CI) BSV(CV%)
+## tka         0.136   0.0502    36.8       1.15 (1.04, 1.26)    29.9%
+## tcl         -2.08   0.0360    1.73    0.125 (0.116, 0.134)    22.5%
+## tv2         0.700   0.0330    4.72       2.01 (1.89, 2.15)    23.0%
+## tv3          1.69  0.00155  0.0919       5.42 (5.41, 5.44)    18.0%
+## tq          -1.22 0.000407  0.0332    0.294 (0.294, 0.294)    30.2%
+## wteff       0.765   0.0379    4.96       2.15 (1.99, 2.31)
+## sexeff     -0.215   0.0493    23.0    0.807 (0.732, 0.889)
+## prop.err   0.0726                                  7.26%
+##          Shrink(SD)%
+## tka            13.6%
+## tcl            1.78%
+## tv2            10.1%
+## tv3            20.8%
+## tq             6.82%
+## wteff
+## sexeff
+## prop.err       24.6%
+##
+## No correlations in between subject variability (BSV) matrix
+## Full BSV covariance ($omega) or correlation ($omega.R; diagonals=SDs)
+## Distribution stats (mean/skewness/kurtosis/p-value) available in $shrink
+##</code></pre>
+<p>The next block provides parameter estimates and associated precisions, between subject variability (BSV) where appropriate, and exponentiated versions of the parameter estimates together with 95% confidence intervals (“back-transformed”). (<code>nlmixr</code> assumes that all parameters are log-transformed. Sometimes this is not the case, as illustrated here for <code>wteff</code> and <code>sexeff</code>.) Shrinkages are also supplied. The fit object has properties that can be interrogated:</p>
+<ul>
+<li><code>my2CptFit$par.fixed</code> provides the fixed-effect parameter estimates</li>
+<li><code>my2CptFit$omega</code> provides the variance-covariance matrix for BSV (<code>$OMEGA</code>)</li>
+<li><code>my2CptFit$omega.R</code> provides the correlation matrix</li>
+<li><code>my2CptFit$shrink</code> provides shrinkages and other statistical descriptors of the parameter distributions</li>
+</ul>
+<pre><code>## -- Fit Data (object is a modified data.frame): --------------------------------------------------------------------------------------------------
+## # A tibble: 360 x 28
+##   ID     TIME    DV   SEX    WT  PRED   RES   WRES IPRED    IRES   IWRES
+## * &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 1     0.302  190.    0.   52. 169.   21.4  0.375  191.  -0.578 -0.0417
+## 2 1      2.91  296.    0.   52. 389.  -93.1 -1.35   329. -32.5   -1.36
+## 3 1      3.14  312.    0.   52. 379.  -66.7 -1.01   314.  -2.27  -0.0996
+## # ... with 357 more rows, and 17 more variables: CPRED &lt;dbl&gt;, CRES &lt;dbl&gt;,
+## # CWRES &lt;dbl&gt;, eta.ka &lt;dbl&gt;, eta.cl &lt;dbl&gt;, eta.v2 &lt;dbl&gt;, eta.v3 &lt;dbl&gt;,
+## # eta.q &lt;dbl&gt;, depot &lt;dbl&gt;, center &lt;dbl&gt;, periph &lt;dbl&gt;, ka &lt;dbl&gt;,
+## # cl &lt;dbl&gt;, v2 &lt;dbl&gt;, v3 &lt;dbl&gt;, q &lt;dbl&gt;, cp &lt;dbl&gt;</code></pre>
+<p>Finally, a summary of the underlying <code>tibble</code> (a modified <code>data.frame</code>) is provided - this contains all parameter estimates and diagnostics.</p>
+</div>
+<div id="physiologically-based-pk" class="section level4">
+<h4><span class="header-section-number">3.1.2.2</span> Physiologically-based PK</h4>
+<p>Building on the first simple example, we can be more ambitious, and try a full PBPK model. This one was published for mavoglurant <span class="citation">(Wendling et al. <a href="#ref-Wendling2016">2016</a>)</span>.</p>
+<p><img src="figures/pbpk.png" width="80%" style="display: block; margin: auto;" /></p>
+<pre><code>pbpk &lt;- function(){
+    ini({
+        lKbBR  = 1.1
+        lKbMU  = 0.3
+        lKbAD  = 2
+        lCLint = 7.6
+        lKbBO  = 0.03
+        lKbRB  = 0.3
+        eta.LClint ~ 4
+        add.err  &lt;- 1
+        prop.err &lt;- 10
+    })
+    model({
+        KbBR = exp(lKbBR)
+        KbMU = exp(lKbMU)
+        KbAD = exp(lKbAD)
+        CLint= exp(lCLint + eta.LClint)
+        KbBO = exp(lKbBO)
+        KbRB = exp(lKbRB)
+
+        ## Regional blood flows
+        CO  = (187.00*WT^0.81)*60/1000;         # Cardiac output (L/h) from White et al (1968)
+        QHT = 4.0 *CO/100;
+        QBR = 12.0*CO/100;
+        QMU = 17.0*CO/100;
+        QAD = 5.0 *CO/100;
+        QSK = 5.0 *CO/100;
+        QSP = 3.0 *CO/100;
+        QPA = 1.0 *CO/100;
+        QLI = 25.5*CO/100;
+        QST = 1.0 *CO/100;
+        QGU = 14.0*CO/100;
+        QHA = QLI - (QSP + QPA + QST + QGU); # Hepatic artery blood flow
+        QBO = 5.0 *CO/100;
+        QKI = 19.0*CO/100;
+        QRB = CO - (QHT + QBR + QMU + QAD + QSK + QLI + QBO + QKI);
+        QLU = QHT + QBR + QMU + QAD + QSK + QLI + QBO + QKI + QRB;
+
+        ## Organs&#39; volumes = organs&#39; weights / organs&#39; density
+        VLU = (0.76 *WT/100)/1.051;
+        VHT = (0.47 *WT/100)/1.030;
+        VBR = (2.00 *WT/100)/1.036;
+        VMU = (40.00*WT/100)/1.041;
+        VAD = (21.42*WT/100)/0.916;
+        VSK = (3.71 *WT/100)/1.116;
+        VSP = (0.26 *WT/100)/1.054;
+        VPA = (0.14 *WT/100)/1.045;
+        VLI = (2.57 *WT/100)/1.040;
+        VST = (0.21 *WT/100)/1.050;
+        VGU = (1.44 *WT/100)/1.043;
+        VBO = (14.29*WT/100)/1.990;
+        VKI = (0.44 *WT/100)/1.050;
+        VAB = (2.81 *WT/100)/1.040;
+        VVB = (5.62 *WT/100)/1.040;
+        VRB = (3.86 *WT/100)/1.040;
+
+        ## Fixed parameters
+        BP  = 0.61;      # Blood:plasma partition coefficient
+        fup = 0.028;     # Fraction unbound in plasma
+        fub = fup/BP;    # Fraction unbound in blood
+
+        KbLU = exp(0.8334);
+        KbHT = exp(1.1205);
+        KbSK = exp(-.5238);
+        KbSP = exp(0.3224);
+        KbPA = exp(0.3224);
+        KbLI = exp(1.7604);
+        KbST = exp(0.3224);
+        KbGU = exp(1.2026);
+        KbKI = exp(1.3171);
+        ##-----------------------------------------
+        S15 = VVB*BP/1000;
+        C15 = Venous_Blood/S15
+        ##-----------------------------------------
+        
+        d/dt(Lungs)          = QLU*(Venous_Blood/VVB - Lungs/KbLU/VLU);
+        d/dt(Heart)          = QHT*(Arterial_Blood/VAB - Heart/KbHT/VHT);
+        d/dt(Brain)          = QBR*(Arterial_Blood/VAB - Brain/KbBR/VBR);
+        d/dt(Muscles)        = QMU*(Arterial_Blood/VAB - Muscles/KbMU/VMU);
+        d/dt(Adipose)        = QAD*(Arterial_Blood/VAB - Adipose/KbAD/VAD);
+        d/dt(Skin)           = QSK*(Arterial_Blood/VAB - Skin/KbSK/VSK);
+        d/dt(Spleen)         = QSP*(Arterial_Blood/VAB - Spleen/KbSP/VSP);
+        d/dt(Pancreas)       = QPA*(Arterial_Blood/VAB - Pancreas/KbPA/VPA);
+        d/dt(Liver)          = QHA*Arterial_Blood/VAB + QSP*Spleen/KbSP/VSP + QPA*Pancreas/KbPA/VPA + QST*Stomach/KbST/VST + QGU*Gut/KbGU/VGU - CLint*fub*Liver/KbLI/VLI - QLI*Liver/KbLI/VLI;
+        d/dt(Stomach)        = QST*(Arterial_Blood/VAB - Stomach/KbST/VST);
+        d/dt(Gut)            = QGU*(Arterial_Blood/VAB - Gut/KbGU/VGU);
+        d/dt(Bones)          = QBO*(Arterial_Blood/VAB - Bones/KbBO/VBO);
+        d/dt(Kidneys)        = QKI*(Arterial_Blood/VAB - Kidneys/KbKI/VKI);
+        d/dt(Arterial_Blood) = QLU*(Lungs/KbLU/VLU - Arterial_Blood/VAB);
+        d/dt(Venous_Blood)   = QHT*Heart/KbHT/VHT + QBR*Brain/KbBR/VBR + QMU*Muscles/KbMU/VMU + QAD*Adipose/KbAD/VAD + QSK*Skin/KbSK/VSK + QLI*Liver/KbLI/VLI + QBO*Bones/KbBO/VBO + QKI*Kidneys/KbKI/VKI + QRB*Rest_of_Body/KbRB/VRB - QLU*Venous_Blood/VVB;
+        d/dt(Rest_of_Body)   = QRB*(Arterial_Blood/VAB - Rest_of_Body/KbRB/VRB);
+
+        C15 ~ add(add.err) + prop(prop.err)
+    })
+}
+</code></pre>
+<p>This model estimates 6 structural parameters, 1 random effect, and includes combined additive and proportional residual error. The dependent variable, <code>C15</code>, is venous blood concentration.</p>
+</div>
+<div id="nonlinear-pk" class="section level4">
+<h4><span class="header-section-number">3.1.2.3</span> Nonlinear PK</h4>
+<p>Complex models can be estimated as well. In the example below, a target-mediated drug disposition PK model for nimotuzumab is illustrated <span class="citation">(Rodríguez-Vera et al. <a href="#ref-Rodriguez-Vera2015">2015</a>)</span>.</p>
+<p><img src="figures/nimo_fig1.PNG" width="100%" style="display: block; margin: auto;" /></p>
+<pre><code>myPKPDModel &lt;- function() {
+    ini({
+        tcl   &lt;- log(0.001)
+        tv1   &lt;- log(1.45)
+        tQ    &lt;- log(0.004)
+        tv2   &lt;- log(44)
+        tkss  &lt;- log(12)
+        tkint &lt;- log(0.3)
+        tksyn &lt;- log(1)
+        tkdeg &lt;- log(7)
+        eta.cl  ~ 2
+        eta.v1  ~ 2
+        eta.kss ~ 2
+        add.err &lt;- 10
+    })
+    model({
+        cl   &lt;- exp(tcl + eta.cl)
+        v1   &lt;- exp(tv1 + eta.v1)
+        Q    &lt;- exp(tQ)
+        v2   &lt;- exp(tv2)
+        kss  &lt;- exp(tkss + eta.kss)
+        kint &lt;- exp(tkint)
+        ksyn &lt;- exp(tksyn)
+        kdeg &lt;- exp(tkdeg)
+
+        k   &lt;- cl/v1
+        k12 &lt;- Q/v1
+        k21 &lt;- Q/v2
+
+        eff(0) &lt;- ksyn/kdeg    # initialize compartment
+        
+        # Calculate concentration
+        conc = 0.5*(central/v1 - eff - kss) + 0.5*sqrt((central/v1 - eff - kss)**2 + 4*kss*central/v1)
+
+        d/dt(central)    = -(k+k12)*conc*v1+k21*peripheral-kint*eff*conc*v1/(kss+conc)
+        d/dt(peripheral) = k12*conc*v1-k21*peripheral  ##Free Drug second compartment amount
+        d/dt(eff)        = ksyn - kdeg*eff - (kint-kdeg)*conc*eff/(kss+conc)
+
+        IPRED = log(conc)
+        IPRED ~ add(add.err)
+    })
+}</code></pre>
+</div>
+<div id="pkpd-models" class="section level4">
+<h4><span class="header-section-number">3.1.2.4</span> PKPD models</h4>
+<p>Finally, we present an implementation of the Friberg myelosuppression model <span class="citation">(Friberg et al. <a href="#ref-Friberg2002">2002</a>)</span>. <code>nlmixr</code> is capable of handling almost any kind of model that can be implemented using ODEs.</p>
+<p><img src="figures/myelo.png" width="80%" style="display: block; margin: auto;" /></p>
+<pre><code>wbc &lt;- function() {
+    ini({
+        log_CIRC0 &lt;- log(7.21)
+        log_MTT   &lt;- log(124)
+        log_SLOPU &lt;- log(28.9)
+        log_GAMMA &lt;- log(0.239)
+        eta.CIRC0  ~ .1
+        eta.MTT    ~ .03
+        eta.SLOPU  ~ .2
+        prop.err &lt;- 10
+    })
+    model({
+        CIRC0 = exp(log_CIRC0 + eta.CIRC0) 
+        MTT   = exp(log_MTT + eta.MTT)
+        SLOPU = exp(log_SLOPU + eta.SLOPU)
+        GAMMA = exp(log_GAMMA)
+
+        # PK parameters from input dataset
+        CL = CLI;   
+        V1 = V1I;   
+        V2 = V2I;   
+        Q = 204;     
+
+        CONC = A_centr/V1;
+
+        # PD parameters
+        NN    = 3;
+        KTR   = (NN + 1)/MTT;
+        EDRUG = 1 - SLOPU * CONC; 
+        FDBK  = (CIRC0 / A_circ)^GAMMA;  
+
+        CIRC = A_circ;
+
+        A_prol(0) = CIRC0;
+        A_tr1(0)  = CIRC0;
+        A_tr2(0)  = CIRC0;
+        A_tr3(0)  = CIRC0;
+        A_circ(0) = CIRC0;
+
+        d/dt(A_centr)  = A_periph * Q/V2 - A_centr * (CL/V1 + Q/V1);
+        d/dt(A_periph) = A_centr * Q/V1 - A_periph * Q/V2;
+        d/dt(A_prol)   = KTR * A_prol * EDRUG * FDBK - KTR * A_prol;
+        d/dt(A_tr1)    = KTR * A_prol - KTR * A_tr1;
+        d/dt(A_tr2)    = KTR * A_tr1 - KTR * A_tr2;
+        d/dt(A_tr3)    = KTR * A_tr2 - KTR * A_tr3;
+        d/dt(A_circ)   = KTR * A_tr3 - KTR * A_circ;
+
+        CIRC ~ prop(prop.err)
+    })
+}
+</code></pre>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Friberg2002">
+<p>Friberg, Lena E., Anja Henningsson, Hugo Maas, Laurent Nguyen, and Mats O Karlsson. 2002. “Model of chemotherapy-induced myelosuppression with parameter consistency across drugs.” <em>Journal of Clinical Oncology</em> 20 (24): 4713–21. <a href="https://doi.org/10.1200/JCO.2002.02.140">https://doi.org/10.1200/JCO.2002.02.140</a>.</p>
+</div>
+<div id="ref-Rodriguez-Vera2015">
+<p>Rodríguez-Vera, Leyanis, Mayra Ramos-Suzarte, Eduardo Fernández-Sánchez, Jorge Luis Soriano, Concepción Peraire Guitart, Gilberto Castañeda Hernández, Carlos O. Jacobo-Cabral, Niurys De Castro Suárez, and Helena Colom Codina. 2015. “Semimechanistic model to characterize nonlinear pharmacokinetics of nimotuzumab in patients with advanced breast cancer.” <em>Journal of Clinical Pharmacology</em> 55 (8): 888–98. <a href="https://doi.org/10.1002/jcph.496">https://doi.org/10.1002/jcph.496</a>.</p>
+</div>
+<div id="ref-Wang2007">
+<p>Wang, Yaning. 2007. “Derivation of various NONMEM estimation methods.” <em>Journal of Pharmacokinetics and Pharmacodynamics</em> 34 (5): 575–93. <a href="https://doi.org/10.1007/s10928-007-9060-6">https://doi.org/10.1007/s10928-007-9060-6</a>.</p>
+</div>
+<div id="ref-Wendling2016">
+<p>Wendling, Thierry, Nikolaos Tsamandouras, Swati Dumitras, Etienne Pigeolet, Kayode Ogungbenro, and Leon Aarons. 2016. “Reduction of a Whole-Body Physiologically Based Pharmacokinetic Model to Stabilise the Bayesian Analysis of Clinical Data.” <em>The AAPS Journal</em> 18 (1): 196–209. <a href="https://doi.org/10.1208/s12248-015-9840-7">https://doi.org/10.1208/s12248-015-9840-7</a>.</p>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="3-vignettes.html"><button class="btn btn-default">Previous</button></a>
+<a href="3-2-xpose.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

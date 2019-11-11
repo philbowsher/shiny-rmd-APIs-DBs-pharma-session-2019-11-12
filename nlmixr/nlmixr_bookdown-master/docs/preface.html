@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>nlmixr: an R package for population PKPD modeling</title>
+  <meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="nlmixr: an R package for population PKPD modeling" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="nlmixr: an R package for population PKPD modeling" />
+  
+  <meta name="twitter:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
+  
+
+<meta name="author" content="Matthew Fidler, Teun M. Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam N. Trame, Justin Wilkins, Yuan Xiong and Wenping Wang">
+
+
+<meta name="date" content="2018-05-16">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="intro.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">nlmixr User's guide and Reference Manual</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to population modeling in R</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-this-book"><i class="fa fa-check"></i>About this book</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#prereq"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#workflow"><i class="fa fa-check"></i><b>1.2</b> Workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Installation</a><ul>
+<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html#nlmixr"><i class="fa fa-check"></i><b>2.1</b> <code>nlmixr</code></a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#windows-installer"><i class="fa fa-check"></i><b>2.1.1</b> Windows installer</a></li>
+<li class="chapter" data-level="2.1.2" data-path="install.html"><a href="install.html#installation-on-windows"><i class="fa fa-check"></i><b>2.1.2</b> Installation on Windows</a></li>
+<li class="chapter" data-level="2.1.3" data-path="install.html"><a href="install.html#installation-on-linux"><i class="fa fa-check"></i><b>2.1.3</b> Installation on Linux</a></li>
+<li class="chapter" data-level="2.1.4" data-path="install.html"><a href="install.html#installation-on-macos"><i class="fa fa-check"></i><b>2.1.4</b> Installation on macOS</a></li>
+<li class="chapter" data-level="2.1.5" data-path="install.html"><a href="install.html#installation-via-docker"><i class="fa fa-check"></i><b>2.1.5</b> Installation via <code>Docker</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="install.html"><a href="install.html#project-management-tool-shinymixr"><i class="fa fa-check"></i><b>2.2</b> project management tool (<code>shinyMixR</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="vignettes.html"><a href="vignettes.html"><i class="fa fa-check"></i><b>3</b> <code>nlmixr</code> vignettes</a><ul>
+<li class="chapter" data-level="3.1" data-path="vignettes.html"><a href="vignettes.html#nlmixr-domain-specific-language"><i class="fa fa-check"></i><b>3.1</b> <code>nlmixr</code> domain specific language</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="vignettes.html"><a href="vignettes.html#rationale"><i class="fa fa-check"></i><b>3.1.1</b> Rationale</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="vignettes.html"><a href="vignettes.html#interface"><i class="fa fa-check"></i><b>3.2</b> <code>shinyMixR</code></a><ul>
+<li class="chapter" data-level="3.2.1" data-path="vignettes.html"><a href="vignettes.html#introduction"><i class="fa fa-check"></i><b>3.2.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2.2" data-path="vignettes.html"><a href="vignettes.html#getting-started"><i class="fa fa-check"></i><b>3.2.2</b> Getting started</a></li>
+<li class="chapter" data-level="3.2.3" data-path="vignettes.html"><a href="vignettes.html#overview"><i class="fa fa-check"></i><b>3.2.3</b> Overview</a></li>
+<li class="chapter" data-level="3.2.4" data-path="vignettes.html"><a href="vignettes.html#edit-models"><i class="fa fa-check"></i><b>3.2.4</b> Edit models</a></li>
+<li class="chapter" data-level="3.2.5" data-path="vignettes.html"><a href="vignettes.html#run-models"><i class="fa fa-check"></i><b>3.2.5</b> Run models</a></li>
+<li class="chapter" data-level="3.2.6" data-path="vignettes.html"><a href="vignettes.html#parameter-estimates"><i class="fa fa-check"></i><b>3.2.6</b> Parameter estimates</a></li>
+<li class="chapter" data-level="3.2.7" data-path="vignettes.html"><a href="vignettes.html#goodness-of-fit"><i class="fa fa-check"></i><b>3.2.7</b> Goodness-of-fit</a></li>
+<li class="chapter" data-level="3.2.8" data-path="vignettes.html"><a href="vignettes.html#fit-plots"><i class="fa fa-check"></i><b>3.2.8</b> Fit plots</a></li>
+<li class="chapter" data-level="3.2.9" data-path="vignettes.html"><a href="vignettes.html#scripts"><i class="fa fa-check"></i><b>3.2.9</b> Scripts</a></li>
+<li class="chapter" data-level="3.2.10" data-path="vignettes.html"><a href="vignettes.html#results"><i class="fa fa-check"></i><b>3.2.10</b> Results</a></li>
+<li class="chapter" data-level="3.2.11" data-path="vignettes.html"><a href="vignettes.html#interactive-session"><i class="fa fa-check"></i><b>3.2.11</b> Interactive session</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications of <code>nlmixr</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#posters-and-presentations"><i class="fa fa-check"></i><b>4.1</b> Posters and Presentations</a></li>
+<li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#sparse-data-analysis-with-nlmixr"><i class="fa fa-check"></i><b>4.2</b> Sparse data analysis with <code>nlmixr</code></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="applications.html"><a href="applications.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><i class="fa fa-check"></i><b>4.2.1</b> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="applications.html"><a href="applications.html#course-page-2018"><i class="fa fa-check"></i><b>4.3</b> Course PAGE 2018</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><code>nlmixr</code>: an R package for population PKPD modeling</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p>In pharmacometrics there are several population pharmacokinetic and pharmacodynamic modeling software packages. The <code>nlmixr</code> R package was developed for fitting general dynamic models, pharmacokinetic (PK) models and pharmacokinetic-pharmacodynamic (PKPD) models in particular, with either individual data or population data. The interesting part about <code>nlmixr</code> is that it is open-source and the entire workflow of modeling can be done solely in R !</p>
+<p><code>nlmixr</code> has its roots in <code>RxODE</code>. Once <code>RxODE</code> was built it was soon recognized that by combining <code>RxODE</code> with a nonlinear mixed-effect model (nlme) estimation tool, one greatly expands an existing nlme tool to include fitting a population PK/PD model described by a set of ordinary differential equations (ODEs) and by allowing complex and arbitrary dosing history.</p>
+<p>The first attempt was to combine <code>RxODE</code> with the <code>nlme()</code> function in R, resulting in two efficient and useful functions for population PK/PD: <code>nlme_lin_cmpt()</code> and <code>nlme_ode()</code>. After the initial success of these functions, Stochastic Approximation EM (SAEM) was soon added to the <code>nlmixr</code> toolbox. While maintaining fidelity to the original SAEM algorithm, the <code>nlmixr</code> implementation of SAEM was written from scratch using <code>C++</code> with many optimization and re-factorization than the original implementation. The resulting SAEM code is compact and efficient. Since execution of <code>nlmixr</code>’s SAEM is in compiled <code>C++</code> mode, the speed of the implementation is very fast.</p>
+<p>Because of actual projects’ needs, a function for the Generalized Nonlinear Mixed-Effect Model (<code>gnlmm</code>) was developed. This function <code>gnlmm()</code> takes an arbitrary user-defined log-likelihood function and hence is able to fit odd types of data like binary data, count data, heavy tail data and bounded clinical endpoints via beta-regression. Structure models can be optionally defined by user-defined ODEs.</p>
+<p>These population PK/PD functions, plus a few ancillary functions to aid model building (e.g., vpc, bootstrap and forward selection of covariate serach), comprise the functionality of the first public release of <code>nlmixr</code> in October 2016.</p>
+<p>In early 2017, a publication on First-Order Conditional Estimate with interaction (FOCEi) was brought to the attention of the <code>nlmixr</code> team. A proof-of-concept implementation was soon put in place. A full production version then followed. This FOCEi algorithm expands NONMEM’s FOCEi implementation prior to Version 7.4.</p>
+<p><code>nlmixr</code>’s population PK/PD functions are highly optimized and efficient. However, due to historic reasons (e.g., <code>nlme</code>’s original user interface) and specific input-output needs, different algorithms in <code>nlmixr</code> have a similar but different user-interface. To reduce the learning curve of population PK/PD modeling, the <code>nlmixr</code> team proposed and implemented a unified user-interface (UUI) across all fitting algorithms in mid-2017. The result is a minimalist, intuitive, expressive, domain-specific population PK/PD modeling language. A comprehensive collection of nlme algorithms with the UUI marked the first CRAN release of <code>nlmixr</code> in October 2017.</p>
+<p><code>nlmixr</code> is under active and intensive development. Exciting features and functionality emerge on a daily basis. For instance, parallel computing was recently available in <code>RxODE</code> using <code>openmp</code>. This parallel computing capability is the industry’s first among the current population PK/PD simulators to our best knowledge. Clinical trial simulation (CTS) was added to <code>nlmixr</code> in May 2018. This simulator can do extensive and sophisticated CTS right after a population PK/PD model with <code>nlmixr</code>.</p>
+<p>Enjoy <code>nlmixr</code> !</p>
+<p><em><strong>Wenping Wang</strong></em></p>
+<div id="about-this-book" class="section level2 unnumbered">
+<h2>About this book</h2>
+<p>This book provides guidance on the use of <code>nlmixr</code> and serves as a first reference manual, without the intent to cover every aspect of modeling or <code>nlmixr</code>.</p>
+<p>We assume readers have a background in pharmacometric modeling and know how to use R. Basic knowledge is required and assumed on installing other software packages, such as Python. The installation of <code>nlmixr</code> and related software and packages is described in Chapter <a href="install.html#install">2</a>.</p>
+</div>
+<div id="acknowledgements" class="section level2 unnumbered">
+<h2>Acknowledgements</h2>
+<p>We are thankful for the time people are willing to spend on this project. There have been various interactions and contributions on GitHub. We would like to thank James Cavenaugh, Ron Keizer and Jack Miller.</p>
+<!-- First chapter -->
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+---
+title: "Immunogenicity - Tiered Approuch to Assess ADA	Positive Samples"
+author: "Risk / Safety Division"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    theme: "lumen"
+    highlight: "tango"
+    logo: "logo.png"
+    favicon: "logo.png"
+params:
+  screening_cut_point: 200
+  confirmatory_cut_point: 20
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+#packages
+library(tidyverse)
+library(magrittr)
+library(stringr)
+library(plotly)
+library(crosstalk)
+library(DT)
+library(flexdashboard)
+library(knitr)
+library(htmltools)
+```
+
+The Screening cut-point is: `r params$screening_cut_point`
+
+The Confirmatory cut-point is: `r params$confirmatory_cut_point`
+
+### Screening {data-commentary-width=700}
+
+
+```{r screening}
+
+# readr
+Screening <- read_csv("Sample_ADA_Data_05062017_Screening.csv") %>% mutate(Screening_Cutpoint = params$screening_cut_point) %>%
+  mutate(Screening_Result_Drug = ifelse(Signal_Response_No_Drug > Screening_Cutpoint, "Positive", "Negative")) %>% mutate(Signal_Response_No_Drug_log10 = log10(Signal_Response_No_Drug)) %>% filter(Screening_Result_Drug=="Positive")
+
+datatable(Screening, options = list(scrollX = TRUE, pageLength = 5))
+
+```
+
+***
+
+```r
+# readr
+Screening <- read_csv("Sample_ADA_Data_05062017_Screening.csv") %>% mutate(Screening_Cutpoint = params$screening_cut_point) %>%
+  mutate(Screening_Result_Drug = ifelse(Signal_Response_No_Drug > Screening_Cutpoint, "Positive", "Negative")) %>% mutate(Signal_Response_No_Drug_log10 = log10(Signal_Response_No_Drug)) %>% filter(Screening_Result_Drug=="Positive")
+
+datatable(Screening, options = list(scrollX = TRUE, pageLength = 5))
+
+```
+
+### Confirmatory {data-commentary-width=700}
+
+
+```{r confirmatory }
+
+# readr
+Confirmatory <- read_csv("Sample_ADA_Data_05062017_Confirmatory.csv")
+
+Screening_Confirmatory <- Screening %>%
+  left_join(Confirmatory, by = 'Sample_Number') %>%
+mutate(Signal_Response_Difference = Signal_Response_No_Drug - Signal_Response_Drug)  %>% mutate(Signal_Response_Divide = Signal_Response_Difference / Signal_Response_No_Drug)  %>%
+  mutate(Percent_Signal_Inhibition_Drug = Signal_Response_Divide * 100) %>% mutate(Confirmatory_Cutpoint = params$confirmatory_cut_point) %>%
+  mutate(Confirmatory_Result_Drug = ifelse(Percent_Signal_Inhibition_Drug > Confirmatory_Cutpoint, "Positive", "Negative")) %>% select(-Signal_Response_Difference, -Signal_Response_Divide)%>% filter(Confirmatory_Result_Drug=="Positive")
+
+datatable(Screening_Confirmatory, options = list(scrollX = TRUE, pageLength = 5))
+
+```
+
+***
+
+```r
+# readr
+Confirmatory <- read_csv("Sample_ADA_Data_05062017_Confirmatory.csv")
+
+Screening_Confirmatory <- Screening %>%
+  left_join(Confirmatory, by = 'Sample_Number') %>%
+mutate(Signal_Response_Difference = Signal_Response_No_Drug - Signal_Response_Drug)  %>% mutate(Signal_Response_Divide = Signal_Response_Difference / Signal_Response_No_Drug)  %>%
+  mutate(Percent_Signal_Inhibition_Drug = Signal_Response_Divide * 100) %>% mutate(Confirmatory_Cutpoint = params$confirmatory_cut_point) %>%
+  mutate(Confirmatory_Result_Drug = ifelse(Percent_Signal_Inhibition_Drug > Confirmatory_Cutpoint, "Positive", "Negative")) %>% select(-Signal_Response_Difference, -Signal_Response_Divide)%>% filter(Confirmatory_Result_Drug=="Positive")
+
+datatable(Screening_Confirmatory, options = list(scrollX = TRUE, pageLength = 5))
+
+```
+
+### Titer {data-commentary-width=700}
+
+
+```{r titer }
+
+Titer <- read_csv("Sample_ADA_Data_05062017_Titer.csv")
+
+Screening_Confirmatory_Titer <- Screening_Confirmatory %>%
+  left_join(Titer, by = 'Sample_Number') 
+
+# %>% filter(Screening_Result_Drug=="Positive" & Confirmatory_Result_Drug=="Positive")
+
+datatable(Screening_Confirmatory_Titer, options = list(scrollX = TRUE, pageLength = 5))
+
+```
+
+***
+
+```r
+Titer <- read_csv("Sample_ADA_Data_05062017_Titer.csv")
+
+Screening_Confirmatory_Titer <- Screening_Confirmatory %>%
+  left_join(Titer, by = 'Sample_Number') 
+
+# %>% filter(Screening_Result_Drug=="Positive" & Confirmatory_Result_Drug=="Positive")
+
+datatable(Screening_Confirmatory_Titer, options = list(scrollX = TRUE, pageLength = 5))
+
+```
+
+### About Me {style="padding: 0px 10%;"}
+
+```{r about_me}
+div(includeMarkdown('about_me.md'), style = 'padding: 25px 10%;')
+
+sessionInfo()
+
+devtools::session_info() 
+```
+```
+
+***
+
+```{r contact}
+div(includeMarkdown('about_me_sidebar.md'), style = 'padding: 25px 10%;')
+```

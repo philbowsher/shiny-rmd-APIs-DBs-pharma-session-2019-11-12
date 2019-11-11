@@ -1,0 +1,94 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+A ggplot2 template - Make any plot by filling in the parameters of this template
+
+ggplot(data = <DATA>) +
+<GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+
+ggplot(data = <DATA>) +
+<GEOM_FUNCTION>(mapping = aes(<MAPPINGS>),
+stat = <STAT>) +
+<FACET_FUNCTION>
+
+ggplot(data = mpg) +
+geom_point(mapping = aes(x = displ, y = hwy))
+
+ggplot(data = diamonds) +
+geom_bar(mapping = aes(x = cut), stat = "count")
+
+```{r setup, include=FALSE}
+library("openfda")
+library(ggplot2)
+library("plyr")
+```
+
+
+```{r}
+patient_ages = fda_query("/drug/event.json") %>%
+               fda_count("patient.patientonsetage") %>%
+               fda_exec()
+
+# patient ages is now a data frame with "term" and "count" columns
+```
+
+ggplot(data = <DATA>) +
+<GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+
+```{r}
+# let's plot it with ggplot2
+
+ggplot(data = patient_ages) +
+geom_point(mapping = aes(x=term, y=count))
+
+```
+
+You can filter the results to count on using the fda_filter() method:
+
+```{r}
+paxil_ages = fda_query("/drug/event.json") %>%
+               fda_filter("patient.drug.openfda.generic_name", "paroxetine") %>%
+               fda_count("patient.patientonsetage") %>%
+               fda_exec()
+```
+
+ggplot(data = <DATA>) +
+<GEOM_FUNCTION>(mapping = aes(<MAPPINGS>))
+
+```{r}
+# let's plot it with ggplot2
+
+ggplot(data = paxil_ages) +
+geom_point(mapping = aes(x=term, y=count))
+```
+
+```{r}
+
+my_query = fda_query("/drug/event.json")
+
+agesm = ldply(c('PREDNISONE', 'Hydroxychloroquine', 'Azathioprine'), function(drug) {
+
+  dfm = my_query %>%
+  fda_filter("patient.patientsex","2") %>%
+  fda_filter("patient.drug.openfda.generic_name", drug) %>%
+  fda_filter("receivedate", "[20040101+TO+20160101]") %>%
+  fda_filter("patient.drug.drugindication", "%22SYSTEMIC+LUPUS+ERYTHEMATOSUS%22") %>%
+  fda_filter("patient.patientonsetage", "[50+TO+60]") %>%
+  fda_count("patient.reaction.reactionmeddrapt.exact") %>%
+  fda_limit(5)%>%
+    fda_exec()
+  dfm$drug = drug
+  dfm
+})
+
+```
+  
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+p <- ggplot(data = agesm, aes(x = term, y = count, fill = drug)) + geom_bar(stat="identity", position=position_dodge()) + theme(axis.text = element_text(vjust = 0, angle = -15), legend.background = element_rect(fill = "gray96"))
+
+p
+```
+
+

@@ -1,0 +1,8 @@
+<h1>Parameter table</h1>
+<table class='sample'>
+</tr><td id='lh'> Parameter </td><td id='lh'> Estimate </td><td id='lh'> SE </td><td id='lh'> CV </td><td id='lh'> BTCI </td><td id='lh'> BSV </td><td id='lh'> Shrink </td></tr>
+<td> tka </td><td> 0.445 </td><td> 0.198 </td><td> 44.4 </td><td> 1.56 (1.06, 2.30) </td><td> 71.5% </td><td> 0.0542% </td></tr>
+<td> tcl </td><td> -3.21 </td><td> 0.0845 </td><td> 2.63 </td><td> 0.0403 (0.0341, 0.0475) </td><td> 26.9% </td><td> 3.71% </td></tr>
+<td> tv </td><td> -0.786 </td><td> 0.0463 </td><td> 5.89 </td><td> 0.456 (0.416, 0.499) </td><td> 13.5% </td><td> 10.2% </td></tr>
+<td> add.err </td><td> 0.692 </td><td> NA </td><td> NA </td><td> 0.692 (NA, NA) </td><td>   </td><td> 11.9% </td></tr>
+</table>

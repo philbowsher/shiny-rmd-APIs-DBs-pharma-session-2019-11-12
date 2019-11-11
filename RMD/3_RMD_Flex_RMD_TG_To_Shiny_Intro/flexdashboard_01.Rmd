@@ -1,0 +1,62 @@
+---
+title: "flexdashboard + shiny"
+output: 
+ flexdashboard::flex_dashboard:
+   orientation: columns
+   source_code: embed
+runtime: shiny
+---
+
+```{r global, include=FALSE}
+# By Sean Lopp
+# load data in 'global' chunk so it can be shared by all users of the dashboard
+library(shiny)
+library(ggplot2)
+library(dplyr)
+```
+
+Inputs {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+checkboxGroupInput("supp", "Suppliment", choices = c("VC", "OJ"),
+                   selected = c("VC", "OJ"), inline = TRUE
+                   )
+
+sliderInput("dose", "dose",
+            min = min(ToothGrowth$dose), max = max(ToothGrowth$dose),
+            value = range(ToothGrowth$dose)
+            )
+```
+
+Outputs
+-----------------------------------------------------------------------
+
+### Scatterplot of weight and miles per gallon
+
+```{r}
+toothgrowth_subset <- reactive({
+  ToothGrowth %>%
+    filter(
+      dose >= input$dose[1],
+      dose <= input$dose[2],
+      supp %in% input$supp
+    )
+})
+
+renderPlot({
+  ggplot(toothgrowth_subset(), aes(x = dose, y = len, color = factor(supp))) +
+    geom_point()
+})
+```
+
+### Histogram of weight
+
+```{r}
+renderPlot({
+  
+  ggplot(toothgrowth_subset(), aes(x = dose)) +
+    geom_histogram(binwidth = 0.25)
+
+})
+```

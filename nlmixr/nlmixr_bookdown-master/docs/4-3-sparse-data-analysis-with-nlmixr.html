@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="nlmixr: an R package for population PKPD modeling" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
+
+
+<meta name="author" content="Matthew Fidler, Teun Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam Trame, Justin Wilkins, Yuan Xiong and Wenping Wang" />
+
+<meta name="date" content="2018-05-11" />
+
+
+<meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
+
+<title>nlmixr: an R package for population PKPD modeling</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+\usepackage{booktabs}
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#welcome-to-population-modeling-with-r">Welcome to population modeling with R</a></li>
+<li class="has-sub"><a href="preface.html#preface">Preface</a><ul>
+<li><a href="about-this-book.html#about-this-book">About this book</a></li>
+<li><a href="acknowledgements.html#acknowledgements">Acknowledgements</a></li>
+</ul></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Introduction</a><ul>
+<li><a href="1-1-prereq.html#prereq"><span class="toc-section-number">1.1</span> Prerequisites</a></li>
+<li><a href="1-2-workflow.html#workflow"><span class="toc-section-number">1.2</span> Workflow</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-install.html#install"><span class="toc-section-number">2</span> Installation</a><ul>
+<li class="has-sub"><a href="2-1-nlmixr.html#nlmixr"><span class="toc-section-number">2.1</span> <code>nlmixr</code></a><ul>
+<li><a href="2-1-nlmixr.html#windows-installer"><span class="toc-section-number">2.1.1</span> Windows installer</a></li>
+<li><a href="2-1-nlmixr.html#installation-on-windows"><span class="toc-section-number">2.1.2</span> Installation on Windows</a></li>
+<li><a href="2-1-nlmixr.html#installation-on-linux"><span class="toc-section-number">2.1.3</span> Installation on Linux</a></li>
+<li><a href="2-1-nlmixr.html#installation-on-macos"><span class="toc-section-number">2.1.4</span> Installation on macOS</a></li>
+</ul></li>
+<li><a href="2-2-shinymixr-project-management-tool-for-nlmixr.html#shinymixr-project-management-tool-for-nlmixr"><span class="toc-section-number">2.2</span> <code>ShinyMixR</code>: project management tool for <code>nlmixr</code></a></li>
+</ul></li>
+<li class="has-sub"><a href="3-vignettes.html#vignettes"><span class="toc-section-number">3</span> <code>nlmixr</code> vignettes</a><ul>
+<li class="has-sub"><a href="3-1-interface.html#interface"><span class="toc-section-number">3.1</span> <code>ShinyMixR</code> - project-centric interface</a><ul>
+<li><a href="3-1-interface.html#introduction"><span class="toc-section-number">3.1.1</span> Introduction</a></li>
+<li><a href="3-1-interface.html#getting-started"><span class="toc-section-number">3.1.2</span> Getting started</a></li>
+<li><a href="3-1-interface.html#overview"><span class="toc-section-number">3.1.3</span> Overview</a></li>
+<li><a href="3-1-interface.html#edit-models"><span class="toc-section-number">3.1.4</span> Edit models</a></li>
+<li><a href="3-1-interface.html#run-models"><span class="toc-section-number">3.1.5</span> Run models</a></li>
+<li><a href="3-1-interface.html#parameter-estimates"><span class="toc-section-number">3.1.6</span> Parameter estimates</a></li>
+<li><a href="3-1-interface.html#goodness-of-fit"><span class="toc-section-number">3.1.7</span> Goodness of fit</a></li>
+<li><a href="3-1-interface.html#fit-plots"><span class="toc-section-number">3.1.8</span> Fit plots</a></li>
+<li><a href="3-1-interface.html#scripts"><span class="toc-section-number">3.1.9</span> Scripts</a></li>
+<li><a href="3-1-interface.html#results"><span class="toc-section-number">3.1.10</span> Results</a></li>
+<li><a href="3-1-interface.html#interactive-session"><span class="toc-section-number">3.1.11</span> Interactive session</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-2-nlmixr-modeling-mini-language.html#nlmixr-modeling-mini-language"><span class="toc-section-number">3.2</span> <code>nlmixr</code> modeling mini-language:</a><ul>
+<li><a href="3-2-nlmixr-modeling-mini-language.html#rationale"><span class="toc-section-number">3.2.1</span> Rationale</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-applications.html#applications"><span class="toc-section-number">4</span> Applications of <code>nlmixr</code></a><ul>
+<li><a href="4-1-demo-examples-from-github.html#demo-examples-from-github"><span class="toc-section-number">4.1</span> Demo Examples from GitHub</a></li>
+<li><a href="4-2-posters-and-presentations.html#posters-and-presentations"><span class="toc-section-number">4.2</span> Posters and Presentations</a></li>
+<li class="has-sub"><a href="4-3-sparse-data-analysis-with-nlmixr.html#sparse-data-analysis-with-nlmixr"><span class="toc-section-number">4.3</span> Sparse data analysis with <code>nlmixr</code></a><ul>
+<li><a href="4-3-sparse-data-analysis-with-nlmixr.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><span class="toc-section-number">4.3.1</span> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
+</ul></li>
+<li><a href="4-4-course-page-2018.html#course-page-2018"><span class="toc-section-number">4.4</span> Course PAGE 2018</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="sparse-data-analysis-with-nlmixr" class="section level2">
+<h2><span class="header-section-number">4.3</span> Sparse data analysis with <code>nlmixr</code></h2>
+<div id="examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Examination of nlmixr estimation algorithm properties for sparse sample data</h3>
+<p>The nlme and SAEM parameter estimation algorithms were compared with NONMEM FOCE-I in a sparse-sampling data setting. To this end, 10,000 patients were simulated after 7 doses with 24 hour intervals with doses split between 10, 30, 60 and 120 mg. Four time points were randomly sampled in the 24 hours after the last dose. A first order absorption, one compartment distribution, and linear elimination model was used with population values of Clearance=4.0 L/hr, Vc=70 L, and KA=1 /hr, 30% IIV for all three parameters (diagonal omega matrix), and 20% residual variability. Of these 10,000 patients, 600 patients were randomly sampled (stratified by dose, 150 subjects per dose), 500 times using PsN and analysed using NONMEM.</p>
+<p>The code for the full analysis is provided here along with some output graphs to demonstrate the results. While these are interesting in their own right, the code also demonstrates how to perform parallel analysis of the estimations; with 500 datasets per analysis, it makes perfect sense to be bale to run these analyses side-by-side providing you have access to a computer with multiple cores. As these approaches are completely OS-dependent, the code below for running in parallel is only applicable to Windows.</p>
+<p>Installing the latest version of nlmixr can be performed with the following code:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
+<span class="kw">install_github</span>(<span class="st">&quot;nlmixrdevelopment/PreciseSums&quot;</span>)
+<span class="kw">install_github</span>(<span class="st">&quot;nlmixrdevelopment/RxODE&quot;</span>)
+<span class="kw">install_github</span>(<span class="st">&quot;nlmixrdevelopment/nlmixr&quot;</span>)</code></pre></div>
+<p>Load the packages and define the model using ODEs:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nlmixr)
+<span class="kw">library</span>(data.table)
+
+<span class="co">#Define the RxODE model</span>
+  ode4 &lt;-<span class="st"> &quot;</span>
+<span class="st">  d/dt(abs)    = -KA*abs;</span>
+<span class="st">  d/dt(centr)  =  KA*abs-(CL/V)*centr;</span>
+<span class="st">  C2=centr/V;</span>
+<span class="st">  &quot;</span>
+  
+<span class="co">#Create the RxODE simulation object</span>
+  mod4 &lt;-<span class="st"> </span><span class="kw">RxODE</span>(<span class="dt">model =</span> ode4, <span class="dt">modName =</span> <span class="st">&#39;mod4&#39;</span>)</code></pre></div>
+<p>Generate the 10,000 sampled parameters:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Population parameter values on log-scale</span>
+  paramsl &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">CL =</span> <span class="kw">log</span>(<span class="dv">4</span>),
+               <span class="dt">V =</span> <span class="kw">log</span>(<span class="dv">70</span>),
+               <span class="dt">KA =</span> <span class="kw">log</span>(<span class="dv">1</span>))
+<span class="co">#make 10,000 subjects to sample from:</span>
+  nsubg &lt;-<span class="st"> </span><span class="dv">2500</span> <span class="co"># subjects per dose</span>
+  doses &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">60</span>, <span class="dv">120</span>)
+  nsub &lt;-<span class="st"> </span>nsubg <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(doses)
+<span class="co">#IIV of 30% for each parameter</span>
+  omega &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="kw">c</span>(<span class="fl">0.09</span>, <span class="fl">0.09</span>, <span class="fl">0.09</span>))<span class="co"># IIV covariance matrix</span>
+  sigma &lt;-<span class="st"> </span><span class="fl">0.2</span>
+<span class="co">#Sample from the multivariate normal</span>
+  <span class="kw">set.seed</span>(<span class="dv">98176247</span>)
+  <span class="kw">library</span>(MASS)
+  mv &lt;-
+<span class="st">    </span><span class="kw">mvrnorm</span>(nsub, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">dim</span>(omega)[<span class="dv">1</span>]), omega) <span class="co"># Sample from covariance matrix</span>
+<span class="co">#Combine population parameters with IIV</span>
+  params.all &lt;-
+<span class="st">    </span><span class="kw">data.table</span>(
+      <span class="st">&quot;ID&quot;</span> =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span><span class="op">:</span>nsub),
+      <span class="st">&quot;CL&quot;</span> =<span class="st"> </span><span class="kw">exp</span>(paramsl[<span class="st">&#39;CL&#39;</span>] <span class="op">+</span><span class="st"> </span>mv[, <span class="dv">1</span>]),
+      <span class="st">&quot;V&quot;</span> =<span class="st"> </span><span class="kw">exp</span>(paramsl[<span class="st">&#39;V&#39;</span>] <span class="op">+</span><span class="st"> </span>mv[, <span class="dv">2</span>]),
+      <span class="st">&quot;KA&quot;</span> =<span class="st"> </span><span class="kw">exp</span>(paramsl[<span class="st">&#39;KA&#39;</span>] <span class="op">+</span><span class="st"> </span>mv[, <span class="dv">3</span>])
+    )
+<span class="co">#set the doses (looping through the 4 doses)</span>
+  params.all[, AMT <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">1000</span> <span class="op">*</span><span class="st"> </span>doses]</code></pre></div>
+<p>The do the simulation of all these profiles. The cool thing is to use lapply which is super efficient (the initial code with a for loop as suggested in the RxODE paper is about 20 times slower):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Startlapply &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  
+<span class="co">#Run the simulations using lapply for speed</span>
+  s =<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span>nsub, <span class="cf">function</span>(i) {
+<span class="co">#selects the parameters associated with the subject to be simulated</span>
+    params &lt;-<span class="st"> </span>params.all[i]
+<span class="co">#creates an eventTable with 7 doses every 24 hours</span>
+    ev &lt;-<span class="st"> </span><span class="kw">eventTable</span>()
+    ev<span class="op">$</span><span class="kw">add.dosing</span>(
+      <span class="dt">dose =</span> params<span class="op">$</span>AMT,
+      <span class="dt">nbr.doses =</span> <span class="dv">7</span>,
+      <span class="dt">dosing.to =</span> <span class="dv">1</span>,
+      <span class="dt">dosing.interval =</span> <span class="dv">24</span>,
+      <span class="dt">rate =</span> <span class="ot">NULL</span>,
+      <span class="dt">start.time =</span> <span class="dv">0</span>
+    )
+<span class="co">#generates 4 random samples in a 24 hour period for the last dose</span>
+    ev<span class="op">$</span><span class="kw">add.sampling</span>(<span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">24</span> <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="kw">sort</span>(<span class="kw">round</span>(<span class="kw">sample</span>(<span class="kw">runif</span>(<span class="dv">600</span>, <span class="dv">0</span>, <span class="dv">1440</span>), <span class="dv">4</span>) <span class="op">/</span><span class="st"> </span><span class="dv">60</span>, <span class="dv">2</span>))))
+<span class="co">#runs the RxODE simulation</span>
+    x &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(mod4<span class="op">$</span><span class="kw">run</span>(params, ev))
+<span class="co">#merges the parameters and ID number to the simulation output</span>
+    x[, <span class="kw">names</span>(params) <span class="op">:</span><span class="er">=</span><span class="st"> </span>params]
+  })
+  
+<span class="co">#runs the entire sequence of 10000 subjects and binds the results to the object res</span>
+  res =<span class="st"> </span><span class="kw">as.data.table</span>(<span class="kw">do.call</span>(<span class="st">&quot;rbind&quot;</span>, s))
+  
+Stoplapply &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  
+Stoplapply <span class="op">-</span><span class="st"> </span>Startlapply
+  <span class="co">#10,000 subjects simulated in:</span>
+  <span class="co">#Time difference of 29.36007 secs</span></code></pre></div>
+<p>Clean up the results and prepare for analysis uising NONMEM:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="kw">setnames</span>(res, <span class="st">&quot;time&quot;</span>, <span class="st">&quot;TIME&quot;</span>)
+<span class="co">#administered dose:</span>
+  Dose &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">TIME =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">6</span> <span class="op">*</span><span class="st"> </span><span class="dv">24</span>, <span class="dv">24</span>), <span class="dt">ID =</span> params.all<span class="op">$</span>ID)
+  Dose &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="kw">merge</span>(Dose, params.all, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>))
+  Dose[, C2 <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">0</span>]
+  Dose[, EVID <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">101</span>]
+  Dose[, DOSE <span class="op">:</span><span class="er">=</span><span class="st"> </span>AMT <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>]
+  res[, EVID <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">0</span>]
+  res[, centr <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]
+  res[, abs <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]
+  res[, DOSE <span class="op">:</span><span class="er">=</span><span class="st"> </span>AMT <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>]
+  res[, AMT <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">0</span>]
+<span class="co">#take out the &#39;trough&#39; (sampling)timepoint used for dosing in this case</span>
+  res &lt;-<span class="st"> </span>res[TIME <span class="op">!=</span><span class="st"> </span><span class="dv">144</span>]
+  res &lt;-<span class="st"> </span><span class="kw">rbind</span>(res, Dose)
+  <span class="kw">setkey</span>(res, ID, TIME)
+<span class="co">#Add residual error</span>
+  res[, DV <span class="op">:</span><span class="er">=</span><span class="st"> </span>C2 <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(<span class="kw">rnorm</span>(<span class="kw">length</span>(C2), <span class="dv">0</span>, sigma))]
+  res[, C2 <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="ot">NULL</span>]
+  res[, DV <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">round</span>(DV)]
+<span class="co">#NONMEM EVID is just 1 instead of the RxODE EVID of 101</span>
+  res[, EVIDNM <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">as.numeric</span>(EVID <span class="op">==</span><span class="st"> </span><span class="dv">101</span>)]
+  res &lt;-<span class="st"> </span>res[, .(ID, DOSE, V, CL, KA, TIME, EVID, AMT, DV, EVIDNM)]
+  <span class="kw">write.table</span>(res,<span class="dt">file=</span><span class="st">&quot;FullSIM160817.csv&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,<span class="dt">col.names=</span><span class="ot">TRUE</span>,<span class="dt">quote=</span><span class="ot">FALSE</span>,<span class="dt">row.names=</span><span class="ot">FALSE</span>)</code></pre></div>
+<p>Then PsN is used to sample 600 subjects stratified by dose from the 10,000 subjects and analyse these with NONMEM. This is repeated 500 times using PsN bootstrap functionality, creating both 500 sets of output and 500 data files to be analysed using nlmixr with the following PsN syntax:</p>
+<pre><code>bootstrap runN024.mod -samples=500 -sample_size=600 -stratify_on=DOSE -no-run_base_model -seed=12345 -threads=15 -directory=runN024</code></pre>
+<p>and the following NONMEM syntax file:</p>
+<pre><code>    $PROB    ORAL1_1CPT_KAVCL MULTIPLE DOSE FOCEI runN024
+    $INPUT   ID DOSE VI CLI KAI TIME EVIDNLMX AMT DV EVID
+    $DATA    FullSIM160817.csv IGNORE=@
+    $SUBR    ADVAN2,TRANS2
+    $PK
+    CL=EXP(THETA(1)+ETA(1))
+    V=EXP(THETA(2)+ETA(2))
+    KA=EXP(THETA(3)+ETA(3))
+    S2=V
+    $ERROR   
+    IPRED = F     
+    RESCV = THETA(4) 
+    W     = IPRED*RESCV
+    IRES  = DV-IPRED
+    IWRES = IRES/W
+    Y     = IPRED+W*EPS(1)
+    $THETA   1.6       ;CL
+    $THETA   4.5       ;V
+    $THETA   0.2       ;Ka
+    $THETA   (0,0.3,1) ;RSV
+    $OMEGA   0.15 0.15 0.15
+    $SIGMA   1 FIX
+    $EST     NSIG=3 PRINT=5 MAX=9999 NOABORT POSTHOC METHOD=COND INTER NOOBT
+    $COV</code></pre>
+<p>The NONMEM results will be provided separately, along with the PsN-generated data files that will be analysed in nlmixr. A function do_nlmixr is created that reads in the data file, defines the model, runs the parameter estimation, and then saves the output file, to be analysed at a later date. The code to analyse these data sets using SAEM with the solved equations implementation is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#SAEM with solved equations:</span>
+  
+  do_nlmixr &lt;-<span class="st"> </span><span class="cf">function</span>(i) {
+    datr &lt;-
+<span class="st">      </span><span class="kw">read.csv</span>(
+        <span class="kw">paste</span>(<span class="st">&quot;D:</span><span class="ch">\\</span><span class="st">nmrun</span><span class="ch">\\</span><span class="st">nmrun1</span><span class="ch">\\</span><span class="st">m1</span><span class="ch">\\</span><span class="st">bs_pr1_&quot;</span>, i, <span class="st">&quot;.dta&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>),
+        <span class="dt">header =</span> <span class="ot">TRUE</span>,
+        <span class="dt">stringsAsFactors =</span> F
+      )
+    
+    <span class="co">#If using Microsoft R Open, you need to specify:</span>
+    <span class="co">#setMKLthreads(1)</span>
+    <span class="co">#Otherwise it accesses too much resources without any gain in speed</span>
+    
+    one.compartment.oral.model.solved &lt;-<span class="st"> </span><span class="cf">function</span>() {
+      <span class="kw">ini</span>({
+        <span class="co"># Where initial conditions/variables are specified</span>
+        <span class="co"># &#39;&lt;-&#39; or &#39;=&#39; defines population parameters</span>
+        <span class="co"># Simple numeric expressions are supported</span>
+        lCl &lt;-<span class="st"> </span><span class="dv">1</span>        <span class="co">#log Cl (L/hr)</span>
+        lVc &lt;-<span class="st"> </span><span class="dv">4</span>        <span class="co">#log V (L)</span>
+        lKA &lt;-<span class="st"> </span><span class="fl">0.1</span>      <span class="co">#log V (L)</span>
+        <span class="co"># Bounds may be specified by c(lower, est, upper), like NONMEM:</span>
+        <span class="co"># Residuals errors are assumed to be population parameters</span>
+        prop.err &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)
+        <span class="co"># Between subject variability estimates are specified by &#39;~&#39;</span>
+        <span class="co"># Semicolons are optional</span>
+        eta.Cl <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+        eta.Vc <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+        eta.KA <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+      })
+      <span class="kw">model</span>({
+        <span class="co"># Where the model is specified</span>
+        <span class="co"># The model uses the ini-defined variable names</span>
+        Cl &lt;-<span class="st"> </span><span class="kw">exp</span>(lCl <span class="op">+</span><span class="st"> </span>eta.Cl)
+        Vc &lt;-<span class="st"> </span><span class="kw">exp</span>(lVc <span class="op">+</span><span class="st"> </span>eta.Vc)
+        KA &lt;-<span class="st"> </span><span class="kw">exp</span>(lKA <span class="op">+</span><span class="st"> </span>eta.KA)
+        <span class="co"># Solved equations:</span>
+        <span class="kw">linCmt</span>() <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)
+      })
+    }
+    
+    fit &lt;-
+<span class="st">      </span><span class="kw">nlmixr</span>(
+        one.compartment.oral.model.solved,
+        datr,
+        <span class="dt">est =</span> <span class="st">&quot;saem&quot;</span>,
+        <span class="dt">control =</span> <span class="kw">saemControl</span>(<span class="dt">print =</span> <span class="dv">50</span>)
+      )
+    
+    <span class="kw">save</span>(fit, <span class="dt">file =</span> <span class="kw">paste</span>(<span class="st">&quot;fit_SAEM_Solved_UUI_&quot;</span>, i, <span class="st">&quot;.Rdata&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+  }</code></pre></div>
+<p>Note that if you use Microsoft R-Open, this comes with the Intel MKL for parallel mathematical computing software that interferes with nlmixr code. You need to actively tell R to o nly use a single thread using the command <code>setMKLthreads(1)</code>. Otherwise it appears to use a parallelised implementation but that only eats up hardware resources without any gain in speed (quite the opposite actually). The code for SAEM with an ODE implementation is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#SAEM with ODE:</span>
+  
+  do_nlmixrODE &lt;-<span class="st"> </span><span class="cf">function</span>(i) {
+    datr &lt;-
+<span class="st">      </span><span class="kw">read.csv</span>(
+        <span class="kw">paste</span>(<span class="st">&quot;D:</span><span class="ch">\\</span><span class="st">nmrun</span><span class="ch">\\</span><span class="st">nmrun1</span><span class="ch">\\</span><span class="st">m1</span><span class="ch">\\</span><span class="st">bs_pr1_&quot;</span>, i, <span class="st">&quot;.dta&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>),
+        <span class="dt">header =</span> <span class="ot">TRUE</span>,
+        <span class="dt">stringsAsFactors =</span> F
+      )
+    
+    <span class="co">#If using Microsoft R Open, you need to specify:</span>
+    <span class="co">#setMKLthreads(1)</span>
+    <span class="co">#Otherwise it accesses too much resources without any gain in speed</span>
+    
+    one.compartment.oral.model &lt;-<span class="st"> </span><span class="cf">function</span>() {
+      <span class="kw">ini</span>({
+        <span class="co"># Where initial conditions/variables are specified</span>
+        <span class="co"># &#39;&lt;-&#39; or &#39;=&#39; defines population parameters</span>
+        <span class="co"># Simple numeric expressions are supported</span>
+        lCl &lt;-<span class="st"> </span><span class="dv">1</span>        <span class="co">#log Cl (L/hr)</span>
+        lVc &lt;-<span class="st"> </span><span class="dv">4</span>        <span class="co">#log V (L)</span>
+        lKA &lt;-<span class="st"> </span><span class="fl">0.1</span>      <span class="co">#log V (L)</span>
+        <span class="co"># Bounds may be specified by c(lower, est, upper), like NONMEM:</span>
+        <span class="co"># Residuals errors are assumed to be population parameters</span>
+        prop.err &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)
+        <span class="co"># Between subject variability estimates are specified by &#39;~&#39;</span>
+        <span class="co"># Semicolons are optional</span>
+        eta.Cl <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+        eta.Vc <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+        eta.KA <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+      })
+      <span class="kw">model</span>({
+        <span class="co"># Where the model is specified</span>
+        <span class="co"># The model uses the ini-defined variable names</span>
+        Cl &lt;-<span class="st"> </span><span class="kw">exp</span>(lCl <span class="op">+</span><span class="st"> </span>eta.Cl)
+        Vc &lt;-<span class="st"> </span><span class="kw">exp</span>(lVc <span class="op">+</span><span class="st"> </span>eta.Vc)
+        KA &lt;-<span class="st"> </span><span class="kw">exp</span>(lKA <span class="op">+</span><span class="st"> </span>eta.KA)
+        <span class="co"># RxODE-style differential equations are supported</span>
+        d <span class="op">/</span><span class="st"> </span><span class="kw">dt</span>(depot)    =<span class="st"> </span><span class="op">-</span>KA <span class="op">*</span><span class="st"> </span>depot
+        
+        d <span class="op">/</span><span class="st"> </span><span class="kw">dt</span>(centr)  =<span class="st">  </span>KA <span class="op">*</span><span class="st"> </span>depot <span class="op">-</span><span class="st"> </span>(Cl <span class="op">/</span><span class="st"> </span>Vc) <span class="op">*</span><span class="st"> </span>centr
+        
+        ## Concentration is calculated
+        cp =<span class="st"> </span>centr <span class="op">/</span><span class="st"> </span>Vc
+        
+        <span class="co"># And is assumed to follow proportional error estimated by prop.err</span>
+        cp <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)
+        
+      })
+    }
+    
+    fit &lt;-
+<span class="st">      </span><span class="kw">nlmixr</span>(
+        one.compartment.oral.model,
+        datr,
+        <span class="dt">est =</span> <span class="st">&quot;saem&quot;</span>,
+        <span class="dt">control =</span> <span class="kw">saemControl</span>(<span class="dt">print =</span> <span class="dv">50</span>)
+      )
+    
+    <span class="kw">save</span>(fit, <span class="dt">file =</span> <span class="kw">paste</span>(<span class="st">&quot;fit_SAEM_ODE_UUI_&quot;</span>, i, <span class="st">&quot;.Rdata&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+  }</code></pre></div>
+<p>nlme with solved equations:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#nlme with solved equations:</span>
+  
+  
+  do_nlmixr_nlme &lt;-<span class="st"> </span><span class="cf">function</span>(i) {
+    datr &lt;-
+<span class="st">      </span><span class="kw">read.csv</span>(
+        <span class="kw">paste</span>(<span class="st">&quot;D:</span><span class="ch">\\</span><span class="st">nmrun</span><span class="ch">\\</span><span class="st">nmrun1</span><span class="ch">\\</span><span class="st">m1</span><span class="ch">\\</span><span class="st">bs_pr1_&quot;</span>, i, <span class="st">&quot;.dta&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>),
+        <span class="dt">header =</span> <span class="ot">TRUE</span>,
+        <span class="dt">stringsAsFactors =</span> F
+      )
+    
+    one.compartment.oral.model.solved &lt;-<span class="st"> </span><span class="cf">function</span>() {
+      <span class="kw">ini</span>({
+        <span class="co"># Where initial conditions/variables are specified</span>
+        <span class="co"># &#39;&lt;-&#39; or &#39;=&#39; defines population parameters</span>
+        <span class="co"># Simple numeric expressions are supported</span>
+        lCl &lt;-<span class="st"> </span><span class="dv">1</span>        <span class="co">#log Cl (L/hr)</span>
+        lVc &lt;-<span class="st"> </span><span class="dv">4</span>        <span class="co">#log V (L)</span>
+        lKA &lt;-<span class="st"> </span><span class="fl">0.1</span>      <span class="co">#log V (L)</span>
+        <span class="co"># Bounds may be specified by c(lower, est, upper), like NONMEM:</span>
+        <span class="co"># Residuals errors are assumed to be population parameters</span>
+        prop.err &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)
+        <span class="co"># Between subject variability estimates are specified by &#39;~&#39;</span>
+        <span class="co"># Semicolons are optional</span>
+        eta.Cl <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+        eta.Vc <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+        eta.KA <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+      })
+      <span class="kw">model</span>({
+        <span class="co"># Where the model is specified</span>
+        <span class="co"># The model uses the ini-defined variable names</span>
+        Cl &lt;-<span class="st"> </span><span class="kw">exp</span>(lCl <span class="op">+</span><span class="st"> </span>eta.Cl)
+        Vc &lt;-<span class="st"> </span><span class="kw">exp</span>(lVc <span class="op">+</span><span class="st"> </span>eta.Vc)
+        KA &lt;-<span class="st"> </span><span class="kw">exp</span>(lKA <span class="op">+</span><span class="st"> </span>eta.KA)
+        <span class="co"># Solved equations:</span>
+        <span class="kw">linCmt</span>() <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)
+      })
+    }
+    
+    fit &lt;-
+<span class="st">      </span><span class="kw">nlmixr</span>(
+        one.compartment.oral.model.solved,
+        datr,
+        <span class="dt">est =</span> <span class="st">&quot;nlme&quot;</span>,
+        <span class="dt">control =</span> <span class="kw">nlmeControl</span>(<span class="dt">pnlsTol =</span> .<span class="dv">1</span>)
+      )
+    
+    <span class="kw">save</span>(fit, <span class="dt">file =</span> <span class="kw">paste</span>(<span class="st">&quot;fit_NLME_Solved_UUI_&quot;</span>, i, <span class="st">&quot;.Rdata&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+  }</code></pre></div>
+<p>and finally nlme with ODE:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#nlme with ODE:</span>
+  
+  
+  do_nlmixrODE_nlme &lt;-<span class="st"> </span><span class="cf">function</span>(i) {
+    datr &lt;-
+<span class="st">      </span><span class="kw">read.csv</span>(
+        <span class="kw">paste</span>(<span class="st">&quot;D:</span><span class="ch">\\</span><span class="st">nmrun</span><span class="ch">\\</span><span class="st">nmrun1</span><span class="ch">\\</span><span class="st">m1</span><span class="ch">\\</span><span class="st">bs_pr1_&quot;</span>, i, <span class="st">&quot;.dta&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>),
+        <span class="dt">header =</span> <span class="ot">TRUE</span>,
+        <span class="dt">stringsAsFactors =</span> F
+      )
+    
+    one.compartment.oral.model &lt;-<span class="st"> </span><span class="cf">function</span>() {
+      <span class="kw">ini</span>({
+        <span class="co"># Where initial conditions/variables are specified</span>
+        <span class="co"># &#39;&lt;-&#39; or &#39;=&#39; defines population parameters</span>
+        <span class="co"># Simple numeric expressions are supported</span>
+        lCl &lt;-<span class="st"> </span><span class="dv">1</span>        <span class="co">#log Cl (L/hr)</span>
+        lVc &lt;-<span class="st"> </span><span class="dv">4</span>        <span class="co">#log V (L)</span>
+        lKA &lt;-<span class="st"> </span><span class="fl">0.1</span>      <span class="co">#log V (L)</span>
+        <span class="co"># Bounds may be specified by c(lower, est, upper), like NONMEM:</span>
+        <span class="co"># Residuals errors are assumed to be population parameters</span>
+        prop.err &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">1</span>)
+        <span class="co"># Between subject variability estimates are specified by &#39;~&#39;</span>
+        <span class="co"># Semicolons are optional</span>
+        eta.Cl <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+        eta.Vc <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+        eta.KA <span class="op">~</span><span class="st"> </span><span class="fl">0.1</span>
+      })
+      <span class="kw">model</span>({
+        <span class="co"># Where the model is specified</span>
+        <span class="co"># The model uses the ini-defined variable names</span>
+        Cl &lt;-<span class="st"> </span><span class="kw">exp</span>(lCl <span class="op">+</span><span class="st"> </span>eta.Cl)
+        Vc &lt;-<span class="st"> </span><span class="kw">exp</span>(lVc <span class="op">+</span><span class="st"> </span>eta.Vc)
+        KA &lt;-<span class="st"> </span><span class="kw">exp</span>(lKA <span class="op">+</span><span class="st"> </span>eta.KA)
+        <span class="co"># RxODE-style differential equations are supported</span>
+        d <span class="op">/</span><span class="st"> </span><span class="kw">dt</span>(depot)    =<span class="st"> </span><span class="op">-</span>KA <span class="op">*</span><span class="st"> </span>depot
+        
+        d <span class="op">/</span><span class="st"> </span><span class="kw">dt</span>(centr)  =<span class="st">  </span>KA <span class="op">*</span><span class="st"> </span>depot <span class="op">-</span><span class="st"> </span>(Cl <span class="op">/</span><span class="st"> </span>Vc) <span class="op">*</span><span class="st"> </span>centr
+        
+        ## Concentration is calculated
+        cp =<span class="st"> </span>centr <span class="op">/</span><span class="st"> </span>Vc
+        
+        <span class="co"># And is assumed to follow proportional error estimated by prop.err</span>
+        cp <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)
+        
+      })
+    }
+    
+    
+    fit &lt;-
+<span class="st">      </span><span class="kw">nlmixr</span>(
+        one.compartment.oral.model,
+        datr,
+        <span class="dt">est =</span> <span class="st">&quot;nlme&quot;</span>,
+        <span class="dt">control =</span> <span class="kw">nlmeControl</span>(<span class="dt">pnlsTol =</span> .<span class="dv">1</span>)
+      )
+    
+    <span class="kw">save</span>(fit, <span class="dt">file =</span> <span class="kw">paste</span>(<span class="st">&quot;fit_NLME_ODE_UUI_&quot;</span>, i, <span class="st">&quot;.Rdata&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+  }</code></pre></div>
+<p>To run these analyses in parallel, you need to set up a local virtual cluster using the <code>doParallel</code> package, in this case with 15 cores, but adjust to your own hardware:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#install.packages(&quot;doParallel&quot;)  </span>
+  <span class="kw">library</span>(doParallel)
+  cl &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(<span class="dv">15</span>)
+  <span class="kw">registerDoParallel</span>(cl)</code></pre></div>
+<p>And then run the 500 analyses using <code>foreach</code> syntax. SAEM with ODEs takes forever for 600 subjects and 4 samples per subject, and so this chunk only runs 15 analyses:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  timeS_Sparse &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  nlmixr_out &lt;-
+<span class="st">    </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">15</span>, <span class="dt">.packages =</span> <span class="kw">c</span>(<span class="st">&#39;nlmixr&#39;</span>)) <span class="op">%dopar%</span><span class="st"> </span><span class="kw">do_nlmixrODE</span>(i)
+  timeE_Sparse &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  timeE_Sparse <span class="op">-</span><span class="st"> </span>timeS_Sparse
+<span class="co">#Time difference of 1.216711 hours for only 15 runs in parallel on a 15 core cluster</span></code></pre></div>
+<p>But SAEM with solved equations is much faster!:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  timeS_Sparse &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  nlmixr_out &lt;-
+<span class="st">    </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>, <span class="dt">.packages =</span> <span class="kw">c</span>(<span class="st">&#39;nlmixr&#39;</span>)) <span class="op">%dopar%</span><span class="st"> </span><span class="kw">do_nlmixr</span>(i)
+  timeE_Sparse &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  timeE_Sparse<span class="op">-</span>timeS_Sparse
+<span class="co">#Time difference of 3.656132 hours</span></code></pre></div>
+<p>nlme with solved systems is even faster:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  timeS_Sparse &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  nlmixr_out &lt;-
+<span class="st">    </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>, <span class="dt">.packages =</span> <span class="kw">c</span>(<span class="st">&#39;nlmixr&#39;</span>)) <span class="op">%dopar%</span><span class="st"> </span><span class="kw">do_nlmixr_nlme</span>(i)
+  timeE_Sparse &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  timeE_Sparse <span class="op">-</span><span class="st"> </span>timeS_Sparse
+<span class="co">#Time difference of 43.58214 mins</span></code></pre></div>
+<p>and nlme with ODEs is still very doable:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  timeS_Sparse &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  nlmixr_out &lt;-
+<span class="st">    </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>, <span class="dt">.packages =</span> <span class="kw">c</span>(<span class="st">&#39;nlmixr&#39;</span>)) <span class="op">%dopar%</span><span class="st"> </span><span class="kw">do_nlmixrODE_nlme</span>(i)
+  timeE_Sparse &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+  timeE_Sparse <span class="op">-</span><span class="st"> </span>timeS_Sparse
+<span class="co">#Time difference of 2.432612 hours</span></code></pre></div>
+<p>You can then read in the output from the 500 nlmixr analyses. With the new Unified User Interface, uniform storage is obtained for all estimation routines, and so a single read routine suffices!</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Read_nlmixr &lt;-<span class="st"> </span><span class="cf">function</span>(Identifier) {
+  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">500</span>) {
+    filename &lt;-<span class="st"> </span><span class="kw">paste</span>(Identifier, <span class="st">&quot;_&quot;</span>, i, <span class="st">&quot;.Rdata&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+    
+    <span class="cf">if</span> (<span class="kw">file.exists</span>(filename)) {
+      <span class="kw">load</span>(filename)
+      TMSE &lt;-<span class="st"> </span>fit<span class="op">$</span>par.fixed<span class="op">$</span>SE
+      TM &lt;-<span class="st"> </span>fit<span class="op">$</span>theta
+      <span class="kw">names</span>(TMSE) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">names</span>(TM), <span class="st">&quot;_SE&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
+      Time &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Time&quot;</span> =<span class="st"> </span>fit<span class="op">$</span>table.time[<span class="st">&quot;elapsed&quot;</span>])
+      IIV &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">diag</span>(fit<span class="op">$</span>omega))
+      run &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Run&quot;</span> =<span class="st"> </span>i)
+      MISSING_CWRES &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;MISSING_CWRES&quot;</span> =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">is.na</span>(fit<span class="op">$</span>CWRES)))
+      TM &lt;-<span class="st"> </span><span class="kw">c</span>(run, TM, TMSE, Time, IIV, MISSING_CWRES)
+      TM &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">t</span>(TM))
+      fit &lt;-<span class="st"> </span><span class="ot">NULL</span>
+      <span class="kw">print</span>(i)
+      <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) {
+        nlmixrpars &lt;&lt;-<span class="st"> </span>TM
+      } <span class="cf">else</span>{
+        nlmixrpars &lt;&lt;-<span class="st"> </span><span class="kw">rbind</span>(nlmixrpars, TM)
+      }
+    }
+  }
+  
+  <span class="kw">save</span>(nlmixrpars, <span class="dt">file =</span> <span class="kw">paste</span>(Identifier, <span class="st">&quot;.Rdata&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>))
+  
+}
+
+<span class="kw">Read_nlmixr</span>(<span class="dt">Identifier =</span> <span class="st">&quot;fit_NLME_Solved_UUI&quot;</span>)
+<span class="co">#Read_nlmixr(Identifier = &quot;fit_NLME_ODE_UUI&quot;)</span>
+<span class="co">#Read_nlmixr(Identifier = &quot;fit_SAEM_Solved_UUI&quot;)</span></code></pre></div>
+<p>These results can then be compared with the NONMEM output and plotted to see the results. Let’s start with a comparison of nlme results and NONMEM estimates. The results generated for nlme using solved equations are provided in Figure <a href="4-3-sparse-data-analysis-with-nlmixr.html#fig:fig1">3.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig1"></span>
+<img src="figures/NLMEsolvedFig1.png" alt="Sparse data analysis results: NONMEM FOCE-I solved vs. nlmixr/NLME solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)" width="80%" />
+<p class="caption">
+Figure 3.1: Sparse data analysis results: NONMEM FOCE-I solved vs. nlmixr/NLME solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)
+</p>
+</div>
+<!-- ![Sparse data analysis results: NONMEM FOCE-I solved vs. nlmixr/NLME solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row) \label{fig:fig1}](sparse/NLME_solved_Fig1.png) -->
+<p>Estimates for population parameters (Cl, Vc, Ka) match pretty well between NONMEM and nlme, and IIV for Cl works fine as well. However, when IIVs become a bit more difficult to estimate, like for Vc, and for Ka especially, nlme tends to return IIV values of zero quite frequently.</p>
+<p>Next step is to compare the results for nlme with models implemented using solved equations vs. the ODE implementation (Figure <a href="4-3-sparse-data-analysis-with-nlmixr.html#fig:fig2">3.2</a>.</p>
+<!-- ![Sparse data analysis results: nlmixr/NLME solved vs. nlmixr/NLME ODE. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row) \label{fig:fig2}](sparse/NLME_Solved_ODE_Fig1.png) -->
+<div class="figure" style="text-align: center"><span id="fig:fig2"></span>
+<img src="figures/NLMESolvedODEFig1.png" alt="Sparse data analysis results: nlmixr/NLME solved vs. nlmixr/NLME ODE. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)" width="80%" />
+<p class="caption">
+Figure 3.2: Sparse data analysis results: nlmixr/NLME solved vs. nlmixr/NLME ODE. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)
+</p>
+</div>
+<p>As is clear from the graph, there is some discrepancy between the outcomes of the two model-definition methods, but this is to be expected with any numerical approach.</p>
+<p>Next, SAEM results are compared with NONMEM FOCE-I. At this stage, estimating ODE models with a large number of subjects is prohibitively time-consuming using SAEM, and so only SAEM with solved solution results are presented (Figure <a href="4-3-sparse-data-analysis-with-nlmixr.html#fig:fig3">3.3</a>).</p>
+<!-- ![Sparse data analysis results: NONMEM FOCE I solved vs. nlmixr/SAEM solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row) \label{fig:fig3}](sparse/SAEM_solved_Fig1.png) -->
+<div class="figure" style="text-align: center"><span id="fig:fig3"></span>
+<img src="figures/SAEMsolvedFig1.png" alt="Sparse data analysis results: NONMEM FOCE I solved vs. nlmixr/SAEM solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)" width="80%" />
+<p class="caption">
+Figure 3.3: Sparse data analysis results: NONMEM FOCE I solved vs. nlmixr/SAEM solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)
+</p>
+</div>
+<p>These results show a near perfect match between NONMEM and nlmixr/SAEM population estimates, and a very good match for IIV estimates as well, where it is noted that for Ka, NONMEM estimates a number of IIVs at zero, while SAEM never does this. The standard errors for NONMEM are larger than for SAEM in all cases, but it is difficult to say which one is correct: for population parameters and IIVs, the values simulated from are known, but for standard errors this is not the case.</p>
+<p>Finally, for a comparison between methods in terms of speed of calculations see Figure <a href="4-3-sparse-data-analysis-with-nlmixr.html#fig:fig4">3.4</a>. It is clear that NONMEM is faster in virtually all cases (and SAEM with ODEs is not even reported) and these comparisons are with single-thread NONMEM. However, speeds are not so prohibitively high that use in daily practice is crippled.</p>
+<!-- ![Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), nlmixr/NLME ODE (middle), SAEM solved (right) \label{fig:fig4}](sparse/Runtimes_Fig1.png) -->
+<div class="figure" style="text-align: center"><span id="fig:fig4"></span>
+<img src="figures/RuntimesFig1.png" alt="Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), nlmixr/NLME ODE (middle), SAEM solved (right)" width="80%" />
+<p class="caption">
+Figure 3.4: Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), nlmixr/NLME ODE (middle), SAEM solved (right)
+</p>
+</div>
+</div>
+</div>
+<p style="text-align: center;">
+<a href="4-2-posters-and-presentations.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-4-course-page-2018.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

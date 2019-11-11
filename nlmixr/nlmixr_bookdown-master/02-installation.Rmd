@@ -1,0 +1,27 @@
+# Installation  {#install}
+
+`nlmixr` can be installed and used on several platforms. Installation can range from easy to challenging, depending on the platform. We are in the process of streamlining this process, and any help or suggestions are greatly appreciated!
+
+
+
+<!-- Windows installer -->
+
+## `nlmixr`
+Information on how to install 'nlmixr' and its dependencies on different platforms can be found on the [`nlmixr` pkgdown site](https://nlmixrdevelopment.github.io/nlmixr/index.html). Separate information can be found on [`RxODE` pkgdown site](https://nlmixrdevelopment.github.io/RxODE/index.html).
+
+
+<!-- docker installation  -->
+### Installation via Docker
+
+Docker is a tool designed to make it easier to create, deploy, and run applications by using so-called "containers". Containers allow complex applications to be wrapped as packages, ensuring they will run on any computer or platform regardless of any customized settings that machine might have that could differ from the machine used for writing and testing the code (a little like virtual machines, but more lightweight and portable). This is very attractive in our case, since it allows all the complexity above to be sidestepped neatly, and in principle makes the results obtained more reproducible.
+
+Information on how to use the docker installation can be found [here](https://github.com/RichardHooijmaijers/nlmixr.docker) and ['nlmixr' pkgdown site](https://nlmixrdevelopment.github.io/nlmixr/index.html)
+
+
+<!-- shinyMixR -->
+## `shinyMixR`: project management tool
+A user-friendly tool was developed for `nlmixr` based on [`Shiny`](http://shiny.rstudio.com/) and [`shinydashboards`](https://cran.r-project.org/web/packages/shinydashboard/shinydashboard.pdf), which facilitates a workflow around an `nlmixr` project.
+
+This `shinyMixR` package provides a means to build a project-centric workflow around `nlmixr` from the R command line and from a streamlined Shiny application. This project tool was developed to enhance the usability and attractiveness of nlmixr, facilitating dynamic and interactive use in real-time for rapid model development. More on the use of `ShinyMixR` in Chapter \@ref(interface).
+
+To install the package, see the [`shinyMixR` pkgdown site](https://richardhooijmaijers.github.io/shinyMixR/index.html)

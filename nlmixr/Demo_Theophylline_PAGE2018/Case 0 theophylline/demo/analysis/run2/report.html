@@ -1,0 +1,81 @@
+<!-- Take into account that Rout always returns information for css and rrres tags -->
+<!-- In case the rr_hcombine function is used with argument toctheme=TRUE also information for rrtoc is returned-->
+<!DOCTYPE html>
+<html>
+<title> report</title>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='style.css' type='text/css'>
+  <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'></script>
+  <script>
+  $(document).ready(function(){
+    $('.showhide').hide();
+    $('a').click(function(){
+      $('.showhide').hide();
+      $('#'+$(this).attr('id')+'d').show();
+    });
+  });
+  </script>
+</head>
+<body>
+  <h2 class='text-center'> report </small></h2><hr>
+  <div class='container-fluid'>
+    <div class='row'>
+      <div class='col-md-3'>
+        <ul class='nav nav-pills nav-stacked'>
+          <li ><a id='out1' href='#'>Parameter table</a></li><li ><a id='out2' href='#'>  GOF plots </a></li><li ><a id='out3' href='#'>  Fit plots </a></li><li ><a id='out4' href='#'>  other plots </a></li><li ><a id='out5' href='#'>  ETA distribution </a></li><li ><a id='out6' href='#'>  VPC </a></li>
+        </ul>
+      </div>
+      <div class='col-md-9'>
+        <div id='out1d' class='showhide'>
+<h1>Parameter table</h1>
+<table class='sample'>
+</tr><td id='lh'> Parameter </td><td id='lh'> Estimate </td><td id='lh'> SE </td><td id='lh'> CV </td><td id='lh'> BTCI </td><td id='lh'> BSV </td><td id='lh'> Shrink </td></tr>
+<td> tka </td><td> 0.450 </td><td> 0.194 </td><td> 43.0 </td><td> 1.57 (1.07, 2.29) </td><td> 72.1% </td><td> -1.05% </td></tr>
+<td> tcl </td><td> -3.22 </td><td> 0.0816 </td><td> 2.54 </td><td> 0.0401 (0.0342, 0.0471) </td><td> 26.9% </td><td> 4.76% </td></tr>
+<td> tv </td><td> -0.784 </td><td> 0.0435 </td><td> 5.56 </td><td> 0.457 (0.419, 0.497) </td><td> 13.6% </td><td> 9.94% </td></tr>
+<td> add.err </td><td> 0.692 </td><td> NA </td><td> NA </td><td> 0.692 (NA, NA) </td><td>   </td><td> 11.9% </td></tr>
+</table>
+</div>
+<div id='out2d' class='showhide'>
+<h1>  GOF plots </h1>
+<img src='./figures/02gofall001.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<br/>
+
+</div>
+<div id='out3d' class='showhide'>
+<h1>  Fit plots </h1>
+<img src='./figures/03indfit001.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<br/>
+
+</div>
+<div id='out4d' class='showhide'>
+<h1>  other plots </h1>
+<img src='./figures/04other001.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<img src='./figures/04other002.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<img src='./figures/04other003.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<img src='./figures/04other004.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<br/>
+
+</div>
+<div id='out5d' class='showhide'>
+<h1>  ETA distribution </h1>
+<img src='./figures/hist.eta001.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<img src='./figures/hist.eta002.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<img src='./figures/hist.eta003.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<br/>
+
+</div>
+<div id='out6d' class='showhide'>
+<h1>  VPC </h1>
+<img src='./figures/vpc.plot001.png' alt='Oops something went wrong, check your code' class='img-responsive'>
+<br/>
+
+</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

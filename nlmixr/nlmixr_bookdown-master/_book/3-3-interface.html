@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="og:title" content="3.3 shinyMixR | nlmixr: an R package for population PKPD modeling" />
+<meta property="og:type" content="book" />
+
+
+<meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
+
+
+<meta name="author" content="Matthew Fidler, Teun M. Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam N. Trame, Justin Wilkins, Yuan Xiong and Wenping Wang" />
+
+<meta name="date" content="2019-06-07" />
+
+
+<meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
+
+<title>3.3 shinyMixR | nlmixr: an R package for population PKPD modeling</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+\usepackage{booktabs}
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container-fluid main-container">
+
+
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#welcome-to-population-modeling-in-r">Welcome to population modeling in R</a></li>
+<li class="has-sub"><a href="preface-the-road-so-far.html#preface-the-road-so-far">Preface: The Road So Far</a><ul>
+<li><a href="about-this-book.html#about-this-book">About this book</a></li>
+<li><a href="acknowledgements.html#acknowledgements">Acknowledgements</a></li>
+</ul></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Introduction</a><ul>
+<li><a href="1-1-prereq.html#prereq"><span class="toc-section-number">1.1</span> Prerequisites</a></li>
+<li><a href="1-2-workflow.html#workflow"><span class="toc-section-number">1.2</span> Workflow</a></li>
+</ul></li>
+<li class="has-sub"><a href="2-install.html#install"><span class="toc-section-number">2</span> Installation</a><ul>
+<li class="has-sub"><a href="2-1-nlmixr.html#nlmixr"><span class="toc-section-number">2.1</span> <code>nlmixr</code></a><ul>
+<li><a href="2-1-nlmixr.html#installation-via-docker"><span class="toc-section-number">2.1.1</span> Installation via Docker</a></li>
+</ul></li>
+<li><a href="2-2-shinymixr-project-management-tool.html#shinymixr-project-management-tool"><span class="toc-section-number">2.2</span> <code>shinyMixR</code>: project management tool</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-vignettes.html#vignettes"><span class="toc-section-number">3</span> <code>nlmixr</code> vignettes</a><ul>
+<li class="has-sub"><a href="3-1-nlmixr-1.html#nlmixr-1"><span class="toc-section-number">3.1</span> <code>nlmixr</code></a><ul>
+<li><a href="3-1-nlmixr-1.html#rationale"><span class="toc-section-number">3.1.1</span> Rationale</a></li>
+<li><a href="3-1-nlmixr-1.html#some-examples"><span class="toc-section-number">3.1.2</span> Some examples</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-2-xpose.html#xpose"><span class="toc-section-number">3.2</span> <code>xpose.nlmixr</code></a><ul>
+<li><a href="3-2-xpose.html#introduction"><span class="toc-section-number">3.2.1</span> Introduction</a></li>
+<li><a href="3-2-xpose.html#getting-started"><span class="toc-section-number">3.2.2</span> Getting started</a></li>
+<li><a href="3-2-xpose.html#overview"><span class="toc-section-number">3.2.3</span> Overview</a></li>
+</ul></li>
+<li class="has-sub"><a href="3-3-interface.html#interface"><span class="toc-section-number">3.3</span> <code>shinyMixR</code></a><ul>
+<li><a href="3-3-interface.html#introduction-1"><span class="toc-section-number">3.3.1</span> Introduction</a></li>
+</ul></li>
+</ul></li>
+<li class="has-sub"><a href="4-applications.html#applications"><span class="toc-section-number">4</span> Applications of <code>nlmixr</code></a><ul>
+<li><a href="4-1-posters-presentations-and-publications.html#posters-presentations-and-publications"><span class="toc-section-number">4.1</span> Posters, Presentations and Publications</a></li>
+</ul></li>
+<li><a href="references.html#references">References</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-12">
+<div id="interface" class="section level2">
+<h2><span class="header-section-number">3.3</span> <code>shinyMixR</code></h2>
+<div id="introduction-1" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Introduction</h3>
+<!-- # ```{r echo=FALSE, results='hide'} -->
+<!-- # knitr::opts_chunk$set(fig.width=7, fig.height=4)  -->
+<!-- # ``` -->
+<p>The <code>nlmixr</code> package can be accessed through command line in <code>R</code> and <code>RStudio</code>, and through an interface <code>shinyMixR</code> supported by the <code>nlmixr</code> team. Both command line and interface support the integration with <a href="https://github.com/nlmixrdevelopment/xpose.nlmixr"><code>xpose.nlmixr</code></a>.</p>
+<p><code>shinyMixR</code> aims to provide a user-friendly tool for <code>nlmixr</code> based on <a href="https://shiny.rstudio.com/"><code>Shiny</code></a>, which facilitates a workflow around an <code>nlmixr</code> project. The <a href="https://cran.r-project.org/web/packages/shinydashboard/shinydashboard.pdf"><code>shinydashboard</code></a> package was used to set up a structure for controlling and tracking runs with an nlmixr project, and was the basis for setting up the modular interface.</p>
+<p>This project tool enhances the usability and attractiveness of <code>nlmixr</code>, facilitating dynamic and interactive use in real-time for rapid model development. In this project-oriented structure, the command line and dashboard can be used independently and/or interdependently. This means that many of the functions within the package can also be used outside the interface within an interactive R session.</p>
+<p>Using <code>shinyMixR</code>, the user specifies and controls an <code>nlmixr</code> project workflow entirely in <code>R</code>. Within a project folder, a structure can be created to include separate folders for models, data and runs. Functionality is available to edit and execute a model code, summarize and compare model outputs in a tabular fashion, and view and compare model development using a tree paradigm. Inputs, outputs and metadata are stored in relation to the model code within the project structure (a discrete R object) to ensure traceability.</p>
+<p>Results are visualized using modifications of existing packages (such as <a href="https://github.com/nlmixrdevelopment/xpose.nlmixr"><code>xpose.nlmixr</code></a>, user-written functions and packages, or pre-existing plotting functionality included in the <code>shinyMixR</code> package. Results are reported using the <a href="https://github.com/RichardHooijmaijers/R3port">R3port</a> package in pdf and html format.</p>
+<p>How the package can be used and what the most important functions are, is described in this <a href="https://richardhooijmaijers.github.io/shinyMixR/articles/shinyMixR-vignette.html">part</a> of the <a href="https://richardhooijmaijers.github.io/shinyMixR/index.html"><code>shinyMixR</code> pkgdown site</a>.</p>
+
+</div>
+</div>
+<!-- </div> -->
+<p style="text-align: center;">
+<a href="3-2-xpose.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-applications.html"><button class="btn btn-default">Next</button></a>
+</p>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+</body>
+</html>

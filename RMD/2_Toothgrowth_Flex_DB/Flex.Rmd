@@ -1,0 +1,42 @@
+---
+title: "Toothgrowth distribution dashboard"
+output: flexdashboard::flex_dashboard
+---
+
+```{r setup, include = FALSE}
+library(ggplot2)
+library(dplyr)
+knitr::opts_chunk$set(fig.width = 5, fig.asp = 1/3)
+```
+
+## Column 1
+
+### Dose
+
+```{r}
+ggplot(ToothGrowth, aes(dose)) + geom_histogram(binwidth = 0.1)
+```
+
+### Length
+
+```{r}
+ggplot(ToothGrowth, aes(len)) + geom_bar()
+```
+
+### Suppliment
+
+```{r}
+ggplot(ToothGrowth, aes(supp)) + geom_bar()
+```
+
+## Column 2
+
+### The largest ToothGrowth
+
+```{r}
+ToothGrowth %>% 
+  arrange(desc(dose)) %>% 
+  head(100) %>% 
+  select(dose, len, supp) %>% 
+  DT::datatable()
+```

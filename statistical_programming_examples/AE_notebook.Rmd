@@ -1,0 +1,63 @@
+---
+title: "Bisphosphonates: adverse compared with serious adverse events"
+author: ""
+date: "`r Sys.Date()`"
+output: html_notebook
+---
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo=FALSE)
+# https://github.com/chjackson/adverse/blob/master/vignettes/sae.Rmd
+library(tidyverse)
+library(ggplot2)
+library(plotly)
+
+load("~/shiny-rmd-APIs-DBs-pharma-session-2019-05-02/Data/bpae.rda")
+
+bpplot <- bpae %>% 
+  rename(study=`Trial name`,
+         anyae=`ANY ADVERSE EVENT`,
+         anysae=`SERIOUS ADVERSE EVENTS`) %>%
+  select(study, N, anyae, anysae) %>% 
+  replace_na(list(anyae=0, anysae=0)) %>%
+  group_by(study) %>%
+  summarise(N=sum(N), anyae=sum(anyae), anysae=sum(anysae)) %>%
+  mutate(pae = anyae/N, psae = anysae/N) %>%
+  arrange(psae) %>% 
+  mutate(study_order = seq(n()))
+
+```
+
+Rates of reported adverse events compared with rates of reported serious advents.  By study, aggregated over all arms of the study. 
+
+Weak correlation between rates of serious vs rates of all adverse events 
+
+Heterogeneity in both outcomes, but less heterogeneity for serious adverse events 
+
+Rates of AEs goes over 1, presumably implying the reported number is the number of events, rather than number of people who have an event.   Is the data for the specific events defined this way too? 
+
+```{r, fig.width=8, fig.height=5.3}
+
+p <- ggplot(bpplot, aes(x=pae, y=psae, label=study)) +
+  geom_point() +
+  xlim(0, 1.5) + ylim(0,1) +
+  xlab("Adverse events / participants") + 
+  ylab("Serious adverse events / participants")
+ggplotly(p)
+
+```
+
+Same data visualised another way: studies ordered by rates of serious adverse events.  Shows the heterogeneity in AE rates given SAE rates. 
+
+```{r, fig.width=8, fig.height=12}
+
+p <- 
+  ggplot(bpplot, aes(y=study_order, label=study)) +
+  geom_point(aes(x=pae)) +
+  geom_point(aes(x=psae), col="red") +
+  xlab("Adverse events / participants") +
+  ylab("") + 
+  scale_y_continuous(breaks=bpplot$study_order, labels=bpplot$study)
+ggplotly(p)
+
+```

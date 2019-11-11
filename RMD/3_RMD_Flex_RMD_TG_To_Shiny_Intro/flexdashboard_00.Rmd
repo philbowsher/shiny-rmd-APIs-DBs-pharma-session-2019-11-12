@@ -1,0 +1,40 @@
+---
+title: "ToothGrowth Data"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+# By Sean Lopp
+library(flexdashboard)
+library(ggplot2)
+library(dplyr)
+```
+
+Row {data-width=650}
+-----------------------------------------------------------------------
+
+### Scatterplot
+
+```{r}
+toothgrowth_subset <- ToothGrowth %>%
+    filter(
+      dose >= .5
+    )
+
+ggplot(toothgrowth_subset, aes(x = dose, y = len, color = factor(supp))) +
+    geom_point()
+```
+
+Row {data-width=350}
+-----------------------------------------------------------------------
+
+### Histogram
+
+```{r}
+ggplot(toothgrowth_subset, aes(x = dose)) + geom_histogram(binwidth = 0.25)
+```
+
+
