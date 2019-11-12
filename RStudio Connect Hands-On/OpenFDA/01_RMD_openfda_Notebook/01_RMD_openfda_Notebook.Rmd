@@ -48,8 +48,8 @@ geom_point(mapping = aes(x=term, y=count))
 You can filter the results to count on using the fda_filter() method:
 
 ```{r}
-paxil_ages = fda_query("/drug/event.json") %>%
-               fda_filter("patient.drug.openfda.generic_name", "paroxetine") %>%
+keytruda_ages = fda_query("/drug/event.json") %>%
+               fda_filter("patient.drug.openfda.generic_name", "Pembrolizumab") %>%
                fda_count("patient.patientonsetage") %>%
                fda_exec()
 ```
@@ -60,7 +60,7 @@ ggplot(data = <DATA>) +
 ```{r}
 # let's plot it with ggplot2
 
-ggplot(data = paxil_ages) +
+ggplot(data = keytruda_ages) +
 geom_point(mapping = aes(x=term, y=count))
 ```
 

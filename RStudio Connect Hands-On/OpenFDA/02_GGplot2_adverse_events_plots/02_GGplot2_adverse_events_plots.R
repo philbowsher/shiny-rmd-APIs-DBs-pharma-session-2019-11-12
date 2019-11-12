@@ -19,7 +19,7 @@ create_age <- function(min, max){#
 }
 
 # specify drug
-drug <- "Tylenol"
+drug <- "Keytruda"
 
 # specify age range
 age <- create_age(20,65)
