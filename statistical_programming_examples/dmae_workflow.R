@@ -60,6 +60,24 @@ sum_dmae <- dmae %>%
     RACE = factor(RACE)
   )
 
+
+
+library(gt)
+gt_tbl <- gt(sum_dmae)
+
+
+gt_tbl <- 
+  gt_tbl %>%
+  tab_header(
+    title = md("**Awesome Clinical Table**"),
+    subtitle = "The top ten largest are presented"
+  )
+
+# Show the gt Table
+gt_tbl
+
+
+
 dplyr::glimpse(sum_dmae)
 
 sum_dmae <- sum_dmae %>%   
