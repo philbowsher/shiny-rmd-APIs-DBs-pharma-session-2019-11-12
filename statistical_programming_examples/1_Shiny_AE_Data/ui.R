@@ -1,6 +1,7 @@
 library(datasets)
 library(DT)
 library(haven)
+library(dplyr)
 data <- read_sas("ae.sas7bdat") %>%
   select(STUDYID, DOMAIN, AELLT, AEDECOD, AEHLGT, AESEV, AESER, AEACN, AEREL,  AEOUT,   AESDTH,  EPOCH,   AESTDTC, AEENDTC )
 
