@@ -2,9 +2,9 @@ library(haven)
 library(tidyverse)
 library(gglabeller)
 
-dm <- read_sas("~/ACOP-2019-R-for-Drug-Development-Workshop/Data/dm.sas7bdat")
+dm <- read_sas("~/shiny-rmd-APIs-DBs-pharma-session-2019-11-12/Data/dm.sas7bdat")
 
-ae <- read_sas("~/ACOP-2019-R-for-Drug-Development-Workshop/Data/ae.sas7bdat")
+ae <- read_sas("~/shiny-rmd-APIs-DBs-pharma-session-2019-11-12/Data/ae.sas7bdat")
 
 dmae <- ae %>%
   left_join(dm, by = 'USUBJID') %>% rename(STUDYID = STUDYID.x ,  DOMAIN = DOMAIN.x) %>%
