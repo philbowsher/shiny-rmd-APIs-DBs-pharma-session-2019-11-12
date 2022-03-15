@@ -12,7 +12,7 @@ library(tidyverse)
 library(ggplot2)
 library(plotly)
 
-load("~/shiny-rmd-APIs-DBs-pharma-session-2019-05-02/Data/bpae.rda")
+load("~/shiny-rmd-APIs-DBs-pharma-session-2019-11-12/Data/bpae.rda")
 
 bpplot <- bpae %>% 
   rename(study=`Trial name`,
